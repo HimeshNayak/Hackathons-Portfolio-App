@@ -1,11 +1,11 @@
 {
-    "name": "worktogether",
-    "short_name": "worktogether",
+    "name": "portfolio",
+    "short_name": "portfolio",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A portfolio app.",
+    "description": "A portfolio App",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
