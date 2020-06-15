@@ -105,87 +105,169 @@ class _MyHomePageState extends State<MyHomePage> {
           //TODO: Add Content to the Home page (Will Contain Images and content about the org)
           //This is the Home Content of of the Home Page
           if (_currentPage <= 0)
-            Container(
-              child: Column(
-                children: <Widget>[
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      SizedBox(
-                        width: 20.0,
-                      ),
-                      SizedBox(
-                          width: 5.0,
-                          height: 120.0,
-                          child: Container(
-                            color: Colors.teal[900],
-                          )),
-                      SizedBox(
-                        width: 10.0,
-                        height: 120.0,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            'Let\'s Come Together as',
-                            style: TextStyle(
-                              fontSize: 20.0,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10.0,
-                          ),
-                          Text(
-                            'DEBUGGERS',
-                            style: TextStyle(
-                              fontSize: 40.0,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10.0,
-                          ),
-                          Text(
-                            'And Fix the Bugs in the Society',
-                            style: TextStyle(
-                              fontSize: 20.0,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  SizedBox(
-                    height: 2.0,
-                    child: Container(
-                      color: Colors.teal[900],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  Text(
-                    'Our Aim',
-                    style: TextStyle(
-                      fontSize: 30.0,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  Text(
-                    'Something About Us and our aim',
-                    style: TextStyle(
-                      fontSize: 20.0,
-                    ),
-                  ),
-                ],
-              ),
-            )
+            Center(
+        child: Column(
+          children: <Widget>[
+            SizedBox(
+              height: 10.0,
+            ),
+            Text(
+              'GHOSTS',
 
+//               Use this instead
+//               GradientText("Ghosts",
+//     gradient: LinearGradient(
+//     colors: [Colors.blueGrey[900], Colors.grey[100]]),
+//     style: TextStyle(fontSize: 50,
+//               fontWeight: FontWeight.bold,
+//                   fontSize: 50,
+//                   decoration: TextDecoration.underline,
+//                   decorationColor: Colors.amber[300]),),
+//     textAlign: TextAlign.center)
+//
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 50,
+                  decoration: TextDecoration.underline,
+                  decorationColor: Colors.amber[300]),
+            ),
+
+//             1st CARD
+            Center(
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                child: FlatButton(
+                  child: Card(
+                    color: Colors.amber[300],
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        const ListTile(
+                          leading: Icon(
+                            Icons.visibility,
+                            color: Colors.redAccent,
+                            size: 35.0,
+                          ),
+                          title: Text(
+                            'Projects',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                          subtitle: Text(
+                              'View Projects by your peer Ghost Developers',
+                              style: TextStyle(color: Colors.blueGrey)),
+                        ),
+                      ],
+                    ),
+                  ),
+                  onPressed: () {
+                    // anything
+                  },
+                ),
+              ),
+            ),
+
+//             2nd CARD
+            Center(
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                child: FlatButton(
+                  child: Card(
+                    color: Colors.amber[300],
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        const ListTile(
+                          leading: Icon(
+                            Icons.create,
+                            color: Colors.redAccent,
+                            size: 35.0,
+                          ),
+                          title: Text(
+                            'Apply',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                          subtitle: Text(
+                              'Apply for collaborating on your peers projects',
+                              style: TextStyle(color: Colors.blueGrey)),
+                        ),
+                      ],
+                    ),
+                  ),
+                  onPressed: () {
+                    // anything
+                  },
+                ),
+              ),
+            ),
+//             3rd CARD
+            Center(
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                child: FlatButton(
+                  child: Card(
+                    color: Colors.amber[300],
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        const ListTile(
+                          leading: Icon(
+                            Icons.touch_app,
+                            color: Colors.redAccent,
+                            size: 35.0,
+                          ),
+                          title: Text(
+                            'Share Idea',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                          subtitle: Text(
+                              'Share your idea and pick developers to work on your project',
+                              style: TextStyle(color: Colors.blueGrey)),
+                        ),
+                      ],
+                    ),
+                  ),
+                  onPressed: () {
+                    // anything
+                  },
+                ),
+              ),
+            ),
+
+//             4th CARD
+            Center(
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                child: FlatButton(
+                  child: Card(
+                    color: Colors.amber[300],
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        const ListTile(
+                          leading: Icon(
+                            Icons.account_circle,
+                            color: Colors.redAccent,
+                            size: 35.0,
+                          ),
+                          title: Text(
+                            'My Profile',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                          subtitle: Text('Name of the person',
+                              style: TextStyle(color: Colors.blueGrey)),
+                        ),
+                      ],
+                    ),
+                  ),
+                  onPressed: () {
+                    // anything
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
           //This is the Portfolio Content Containing image, name and subText for the members
           //The card is generated programmatically
           //TODO: Collect images of the members and display acc.ly
