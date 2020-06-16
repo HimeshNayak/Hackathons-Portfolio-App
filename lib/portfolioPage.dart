@@ -6,7 +6,7 @@ import 'package:url_launcher/url_launcher.dart';
 //Skills of the members
 var skills = [
   ['Android Studio', 'HTML', 'JavaScript', 'CSS'],
-  ['Machine Learning', 'Flutter', 'HTML', 'CSS'],
+  ['Machine Learning', 'Flutter', 'HTML', 'CSS','Python'],
   ['HTML', 'CSS','JAVAscript', 'NodeJs'],
   ['Android Studio', 'HTML', 'JavaScript', 'CSS'],
   ['Machine Learning', 'Flutter', 'HTML', 'CSS'],
@@ -93,7 +93,9 @@ class PortfolioPage extends StatelessWidget {
                         fontSize: 17,
                         fontWeight: FontWeight.w400,
                         color: Colors.white),
+                    indicatorColor: Colors.amber[300],
                     labelColor: Colors.blueGrey[900],
+                    labelPadding: EdgeInsets.all(0),
                     unselectedLabelColor: Colors.blueGrey[500],
                     tabs: [
                       Tab(icon: Icon(Icons.person), text: 'Skills'),
