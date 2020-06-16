@@ -1,69 +1,65 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 //TODO: Collect and add the skills of the members
 //Skills of the members
 var skills = [
-  'Android Studio\nHTML\nJavaScript\nCSS',
-  'ML\nFlutter\nHTML\nCSS',
-  'HTML\nCSS\nJAVAscript',
-  'Android Studio\nHTML\nJavaScript\nCSS',
-  'ML\nFlutter\nHTML\nCSS',
-  'HTML\nCSS\nJAVAscript',
-  'Android Studio\nHTML\nJavaScript\nCSS',
-  'ML\nFlutter\nHTML\nCSS',
-  'Android Studio\nHTML\nJavaScript\nCSS',
-  'ML\nFlutter\nHTML\nCSS',
-  'ML\nFlutter\nHTML\nCSS',
+  ['Android Studio', 'HTML', 'JavaScript', 'CSS'],
+  ['Machine Learning', 'Flutter', 'HTML', 'CSS'],
+  ['HTML', 'CSS','JAVAscript', 'NodeJs'],
+  ['Android Studio', 'HTML', 'JavaScript', 'CSS'],
+  ['Machine Learning', 'Flutter', 'HTML', 'CSS'],
+  ['HTML', 'CSS','JAVAscript', 'NodeJs'],
+  ['Android Studio', 'HTML', 'JavaScript', 'CSS'],
+  ['Machine Learning', 'Flutter', 'HTML', 'CSS'],
+  ['HTML', 'CSS','JAVAscript', 'NodeJs'],
+  ['Android Studio', 'HTML', 'JavaScript', 'CSS'],
+  ['Machine Learning', 'Flutter', 'HTML', 'CSS'],
+  ['HTML', 'CSS','JAVAscript', 'NodeJs'],
+];
+
+var linkedin = [
+  'himeshnayak015',
+  'hareshnayak08',
+  'himeshnayak015',
+  'hareshnayak08',
+  'himeshnayak015',
+  'hareshnayak08',
+  'himeshnayak015',
+  'hareshnayak08',
+  'himeshnayak015',
+  'himeshnayak015',
+  'hareshnayak08',
+];
+
+var github = [
+  'HimeshNayak',
+  'hareshnayak',
+  'HimeshNayak',
+  'hareshnayak',
+  'HimeshNayak',
+  'hareshnayak',
+  'HimeshNayak',
+  'hareshnayak',
+  'HimeshNayak',
+  'HimeshNayak',
+  'hareshnayak',
 ];
 
 class PortfolioPage extends StatelessWidget {
-  PortfolioPage({Key key, this.title, this.memID, this.name}) : super(key: key);
+  PortfolioPage({Key key, this.title, this.memID, this.name, this.image}) : super(key: key);
 
   final String title;
   final int memID;
   final String name;
+  final String image;
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(name),
-        backgroundColor: Colors.blueGrey[900],
-      ),
-      body: MyApp(),
-    );
-  }
-}
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Portfolio App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: Portfolios(),
-    );
-  }
-}
-
-class Portfolios extends StatefulWidget {
-  @override
-  _PortfoliosState createState() => _PortfoliosState();
-}
-
-class _PortfoliosState extends State<Portfolios> {
-  double h = 120;
-  double w = 120;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: DefaultTabController(
-        length: 2,
+        length: 3,
         child: NestedScrollView(
           headerSliverBuilder:
               (BuildContext context, bool innerBoxIsNotScrolled) {
@@ -72,17 +68,19 @@ class _PortfoliosState extends State<Portfolios> {
                 expandedHeight: 300.0,
                 floating: false,
                 pinned: true,
+                backgroundColor: Colors.blueGrey[900],
                 flexibleSpace: FlexibleSpaceBar(
-                  title: Text(
-                    "Haresh Nayak",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      fontSize: 16.0,
-                    ),
-                  ),
-                  background: Image.network(
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS51EEY6JhVwuOHwpCR8ZMjJpphcYCNNayon9yeMyUb13wMTkXI&usqp=CAU",
+                  title:
+                  Text(
+                          name,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 16.0,
+                          ),
+                        ),
+                  background: Image.asset(
+                    image,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -98,8 +96,9 @@ class _PortfoliosState extends State<Portfolios> {
                     labelColor: Colors.blueGrey[900],
                     unselectedLabelColor: Colors.blueGrey[500],
                     tabs: [
-                      Tab(icon: Icon(Icons.person), text: "About"),
-                      Tab(icon: Icon(Icons.book), text: "Projects"),
+                      Tab(icon: Icon(Icons.person), text: 'Skills'),
+                      Tab(icon: Icon(Icons.book), text: 'Projects'),
+                      Tab(icon:Icon(Icons.contact_mail), text: 'Contact'),
                     ],
                   ),
                 ),
@@ -111,21 +110,17 @@ class _PortfoliosState extends State<Portfolios> {
               Center(
                 child: Column(
                   children: <Widget>[
-                    SizedBox(height: 20),
-                    Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Text(
-                            'Linkedin : linkedin.com/in/hareshnayak08 \n\nGitHub: github.com/hareshnayak')),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
+                        SizedBox(height: 20),
                         Column(
                           children: <Widget>[
                             Padding(
                               padding: EdgeInsets.all(10),
                               child: SizedBox(
-                                height: h,
-                                width: w,
+                                height: 120,
+                                width: 120,
                                 child: Container(
                                   child: Center(
                                     child: Padding(
@@ -143,15 +138,15 @@ class _PortfoliosState extends State<Portfolios> {
                             Padding(
                               padding: EdgeInsets.all(10),
                               child: SizedBox(
-                                height: h,
-                                width: w,
+                                height: 120,
+                                width: 120,
                                 child: Container(
                                   child: Center(
                                     child: Image.network(
                                         'https://cdn.dribbble.com/users/1622791/screenshots/11174104/flutter_intro.png'),
                                   ),
                                   decoration:
-                                      BoxDecoration(color: Colors.white),
+                                  BoxDecoration(color: Colors.white),
                                 ),
                               ),
                             ),
@@ -159,28 +154,41 @@ class _PortfoliosState extends State<Portfolios> {
                         ),
                         Column(
                           children: <Widget>[
+//                            Card(
+//                              child: ListTile(
+//                                      leading:
+
+//                                      title: Text(
+//                                        name,
+//                                        style: TextStyle(color: Colors.black),
+//                                      ),
+//                                      subtitle: Text(
+//                                          linkedin[memID],
+//                                          style: TextStyle(color: Colors.blueGrey)),
+//                                    ),
+//                            ),
                             Padding(
                               padding: EdgeInsets.all(10),
                               child: SizedBox(
-                                height: h,
-                                width: w,
+                                height: 120,
+                                width: 120,
                                 child: Container(
                                   child: Center(
                                       child: Padding(
-                                    padding: EdgeInsets.symmetric(),
-                                    child: Image.network(
-                                        'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRWSaBULh-ALdB1N0Ho9wh2HYbkeJcwNicgZubjH83EH2atsLpu&usqp=CAU'),
-                                  )),
+                                        padding: EdgeInsets.symmetric(),
+                                        child: Image.network(
+                                            'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRWSaBULh-ALdB1N0Ho9wh2HYbkeJcwNicgZubjH83EH2atsLpu&usqp=CAU'),
+                                      )),
                                   decoration:
-                                      BoxDecoration(color: Colors.white),
+                                  BoxDecoration(color: Colors.white),
                                 ),
                               ),
                             ),
                             Padding(
                               padding: EdgeInsets.all(10),
                               child: SizedBox(
-                                height: h,
-                                width: w,
+                                height: 120,
+                                width: 120,
                                 child: Container(
                                   child: Center(
                                     child: Padding(
@@ -190,7 +198,7 @@ class _PortfoliosState extends State<Portfolios> {
                                     ),
                                   ),
                                   decoration:
-                                      BoxDecoration(color: Colors.white),
+                                  BoxDecoration(color: Colors.white),
                                 ),
                               ),
                             ),
@@ -201,19 +209,19 @@ class _PortfoliosState extends State<Portfolios> {
                   ],
                 ),
               ),
-             Column(
+              Column(
                 children: <Widget>[
                   Padding(
                     padding: EdgeInsets.all(10),
                     child: SizedBox(
-                      height: 120,
+                      //height: 120,
                       child: Card(
                         child: ListTile(
                           leading: Image.network(
                               'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRWSaBULh-ALdB1N0Ho9wh2HYbkeJcwNicgZubjH83EH2atsLpu&usqp=CAU'),
                           title: Text('Machine Learning'),
                           subtitle:
-                              Text('Classification between a dog and a cat'),
+                          Text('Classification between a dog and a cat'),
                           trailing: FloatingActionButton(
                               child: Icon(Icons.edit),
                               backgroundColor: Colors.amber[300],
@@ -226,7 +234,7 @@ class _PortfoliosState extends State<Portfolios> {
                   Padding(
                     padding: EdgeInsets.all(10),
                     child: SizedBox(
-                      height: 120,
+                      //height: 120,
                       child: Card(
                         child: ListTile(
                           leading: Image.network(
@@ -238,6 +246,55 @@ class _PortfoliosState extends State<Portfolios> {
                               backgroundColor: Colors.amber[300],
                               mini: true,
                               onPressed: () {}),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Column(
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: SizedBox(
+                      //height: 120,
+                      child: Card(
+                        child: ListTile(
+                          leading: Image.asset(
+                              'images/github.png'),
+                          title: Text(name),
+                          subtitle:
+                          Text(github[memID]),
+                          trailing: FloatingActionButton(
+                              child: Icon(Icons.code),
+                              backgroundColor: Colors.amber[300],
+                              mini: true,
+                              onPressed: () {
+                                String url = 'https://github.com/' + github[memID];
+                                launch(url);
+                              }),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: SizedBox(
+                      //height: 120,
+                      child: Card(
+                        child: ListTile(
+                          leading: Image.asset(
+                              'images/linkedin.png'),
+                          title: Text(name),
+                          subtitle: Text(linkedin[memID]),
+                          trailing: FloatingActionButton(
+                              child: Icon(Icons.comment),
+                              backgroundColor: Colors.amber[300],
+                              mini: true,
+                              onPressed: () {
+                                String url = 'https://linkedin.com/in/' + linkedin[memID];
+                                launch(url);
+                              }),
                         ),
                       ),
                     ),
