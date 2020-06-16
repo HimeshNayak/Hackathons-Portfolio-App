@@ -98,9 +98,26 @@ class PortfolioPage extends StatelessWidget {
                     labelPadding: EdgeInsets.all(0),
                     unselectedLabelColor: Colors.blueGrey[500],
                     tabs: [
-                      Tab(icon: Icon(Icons.person), text: 'Skills'),
-                      Tab(icon: Icon(Icons.book), text: 'Projects'),
-                      Tab(icon:Icon(Icons.contact_mail), text: 'Contact'),
+                      Tab(child: Container(
+                      height: double.infinity,
+//                       padding: EdgeInsets,all(10),
+                      width:double.infinity,
+                      decoration:BoxDecoration(color: Colors.white),
+                      child: Icon(Icons.code),
+                      ),
+                        ),
+                      Tab(child: Container(
+                      height: double.infinity,
+//                       padding: EdgeInsets,all(10),
+                      width:double.infinity,
+                      decoration:BoxDecoration(color: Colors.white),
+                      child: Icon(Icons.code),),),
+                      Tab(child: Container(
+                      height: double.infinity,
+                      padding: EdgeInsets,all(10),
+                      width:double.infinity,
+                      decoration:BoxDecoration(color: Colors.white),
+                      child: Icon(Icons.code),),)
                     ],
                   ),
                 ),
