@@ -201,16 +201,48 @@ class _PortfoliosState extends State<Portfolios> {
                   ],
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: SizedBox(
-                  child: Container(
-                    child: Center(
-                      child: Text('Machine Learning'),
+             Column(
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: SizedBox(
+                      height: 120,
+                      child: Card(
+                        child: ListTile(
+                          leading: Image.network(
+                              'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRWSaBULh-ALdB1N0Ho9wh2HYbkeJcwNicgZubjH83EH2atsLpu&usqp=CAU'),
+                          title: Text('Machine Learning'),
+                          subtitle:
+                              Text('Classification between a dog and a cat'),
+                          trailing: FloatingActionButton(
+                              child: Icon(Icons.edit),
+                              backgroundColor: Colors.amber[300],
+                              mini: true,
+                              onPressed: () {}),
+                        ),
+                      ),
                     ),
-                    decoration: BoxDecoration(color: Colors.amber[300]),
                   ),
-                ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: SizedBox(
+                      height: 120,
+                      child: Card(
+                        child: ListTile(
+                          leading: Image.network(
+                              'https://qph.fs.quoracdn.net/main-qimg-28cadbd02699c25a88e5c78d73c7babc'),
+                          title: Text('Rock Paper Scissors'),
+                          subtitle: Text('A python game'),
+                          trailing: FloatingActionButton(
+                              child: Icon(Icons.edit),
+                              backgroundColor: Colors.amber[300],
+                              mini: true,
+                              onPressed: () {}),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
