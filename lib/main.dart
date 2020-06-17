@@ -296,7 +296,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
 
-//                1nd CARD
+//                1st CARD
                   Center(
                     child: Padding(
                       padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
@@ -308,16 +308,16 @@ class _MyHomePageState extends State<MyHomePage> {
                             children: <Widget>[
                               const ListTile(
                                 leading: Icon(
-                                  Icons.create,
+                                  Icons.book,
                                   color: Colors.redAccent,
                                   size: 35.0,
                                 ),
                                 title: Text(
-                                  'Apply',
+                                  'Projects',
                                   style: TextStyle(color: Colors.black),
                                 ),
                                 subtitle: Text(
-                                    'Apply for collaborating on your peers projects',
+                                    'Take a peek at the Projects of the members',
                                     style: TextStyle(color: Colors.blueGrey)),
                               ),
                             ],
@@ -331,7 +331,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                   ),
-//             3rd CARD
+//             2nd CARD
                   Center(
                     child: Padding(
                       padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
@@ -343,16 +343,16 @@ class _MyHomePageState extends State<MyHomePage> {
                             children: <Widget>[
                               const ListTile(
                                 leading: Icon(
-                                  Icons.touch_app,
+                                  Icons.code,
                                   color: Colors.redAccent,
                                   size: 35.0,
                                 ),
                                 title: Text(
-                                  'Share Idea',
+                                  'Join As a Developer',
                                   style: TextStyle(color: Colors.black),
                                 ),
                                 subtitle: Text(
-                                    'Share your idea and pick developers to work on your project',
+                                    'Become a Ghost develper and get the opportunity to build projects',
                                     style: TextStyle(color: Colors.blueGrey)),
                               ),
                             ],
@@ -366,6 +366,40 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                   ),
+//                   3rd CARD
+                  Center(
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+            child: FlatButton(
+                child: Card(
+                  color: Colors.amber[300],
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      const ListTile(
+                        leading: Icon(
+                          Icons.assignment_ind,
+                          color: Colors.redAccent,
+                          size: 35.0,
+                        ),
+                        title: Text(
+                          'Recruit Us',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        subtitle: Text(
+                            'Share your idea and pick developers to work on your project',
+                            style: TextStyle(color: Colors.blueGrey)),
+                      ),
+                    ],
+                  ),
+                ),
+                onPressed: () {
+                  setState((){
+                _currentPage = 3;
+                  });
+                }
+          ),
+        ),
                 ],
               ),
             )
