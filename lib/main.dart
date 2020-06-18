@@ -1,10 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:portfolio/loginPage.dart';
+
+//data
+import 'package:community/members.dart';
 
 //Routes
-import 'package:portfolio/portfolioPage.dart';
+import 'package:community/portfolioPage.dart';
+import 'package:community/loginPage.dart';
+import 'package:community/worksPage.dart';
 
 //Imported libs
 import 'package:gradient_text/gradient_text.dart';
@@ -24,12 +28,6 @@ final List<String> imgList = [
 ];
 
 void main() {
-//  SystemChrome.setSystemUIOverlayStyle(
-//    SystemUiOverlayStyle(
-//      systemNavigationBarColor:
-//      SystemUiOverlayStyle.dark.systemNavigationBarColor,
-//    ),
-//  );
   runApp(MyApp());
 }
 
@@ -69,55 +67,6 @@ class _MyHomePageState extends State<MyHomePage> {
     'Join Us',
   ];
 
-  //TODO: Apply firebase Realtime DB to access the names of the members
-  //Name of all the members whose portfolio is displayed
-  List<String> _members = [
-    'Himesh Nayak',
-    'Haresh Nayak',
-    'Parv Sharma',
-    'Sarhtak Kh.',
-    'Kshitij Garg',
-    'Ankur Saini',
-    'Harsh Goyal',
-    'Rahul Gandhi',
-    'Shubham Rawal',
-    'Dhruv Pasricha',
-    'Sahil Saini'
-  ];
-
-  //TODO: Apply firebase Realtime DB to access the Position/Subtext of the member
-  //Position/Subtext of all the members whose portfolio is displayed
-  List<String> _membersPosition = [
-    'App Developer',
-    'ML Enthusiast',
-    'Web Developer',
-    'Web Developer',
-    'WebDeveloper',
-    'Web Developer',
-    'C++ Enthusiast',
-    'Web Developer',
-    'C++ Enthusiast',
-    'C++ Enthusiast',
-    'Web Developer'
-  ];
-
-  //TODO: Convert the images of the members from AssetImage to NetworkImage
-  //TODO: Name/URL of Image files of all the members whose portfolio is displayed
-  //Name of the image file for the members TEMPORARY
-  List<String> _imageMember = [
-    'himesh.jpg',
-    'haresh.jpg',
-    'hhlogo.png',
-    'sarthak.png',
-    'hhlogo.png',
-    'hhlogo.png',
-    'hhlogo.png',
-    'hhlogo.png',
-    'hhlogo.png',
-    'hhlogo.png',
-    'hhlogo.png',
-  ];
-
   String _joinName, _joinEmail;
   final _formKey = new GlobalKey<FormState>();
   static int _projectNo = 0;
@@ -136,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // Causes the app to rebuild with the new _selectedChoice.
     setState(() {
       _selectedChoice = choice;
-      if (_selectedChoice.icon == Icons.person)
+      if (_selectedChoice.icon == Icons.account_circle)
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -144,8 +93,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 LoginScreen(),
           ),
         );
-      else if (_selectedChoice.icon == Icons.search)
-        _currentPage = 2;
+      else if (_selectedChoice.icon == Icons.work)
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) =>
+                WorksDone(),
+          ),
+        );
       else if (_selectedChoice.icon == Icons.share)
         _currentPage = 1;
       else if (_selectedChoice.icon == Icons.mail)
@@ -173,11 +128,17 @@ class _MyHomePageState extends State<MyHomePage> {
               _select(choices[0]);
             },
           ),
+          IconButton(
+            icon: Icon(choices[1].icon),
+            onPressed: () {
+              _select(choices[1]);
+            },
+          ),
           // overflow menu
           PopupMenuButton<Choice>(
             onSelected: _select,
             itemBuilder: (BuildContext context) {
-              return choices.skip(1).map((Choice choice) {
+              return choices.skip(2).map((Choice choice) {
                 return PopupMenuItem<Choice>(
                   value: choice,
                   child: Row(
@@ -230,17 +191,17 @@ class _MyHomePageState extends State<MyHomePage> {
                         autoPlay: true,
                       ),
                       items: imgList.map((item) =>
-
                           FlatButton(
+                            padding: EdgeInsets.all(0),
                             child: Container(
-                              margin: EdgeInsets.all(5.0),
+                              margin: EdgeInsets.symmetric(vertical: 20.0),
                               child: ClipRRect(
                                   borderRadius: BorderRadius.all(
                                       Radius.circular(5.0)),
                                   child: Stack(
                                     children: <Widget>[
                                       Image.network(item, fit: BoxFit.cover,
-                                          width: 1000.0),
+                                          width: double.infinity),
                                       Positioned(
                                         bottom: 0.0,
                                         left: 0.0,
@@ -285,9 +246,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                   builder: (context) =>
                                       PortfolioPage(
                                           memID: imgList.indexOf(item),
-                                          name: _members[imgList.indexOf(item)],
+                                          name: Members.members[imgList.indexOf(item)],
                                           image: 'images/' +
-                                              _imageMember[imgList.indexOf(
+                                              Members.imageMember[imgList.indexOf(
                                                   item)]),
                                 ),
                               );
@@ -296,7 +257,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
 
-//                1nd CARD
+//                1st CARD
                   Center(
                     child: Padding(
                       padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
@@ -308,16 +269,16 @@ class _MyHomePageState extends State<MyHomePage> {
                             children: <Widget>[
                               const ListTile(
                                 leading: Icon(
-                                  Icons.create,
+                                  Icons.book,
                                   color: Colors.redAccent,
                                   size: 35.0,
                                 ),
                                 title: Text(
-                                  'Apply',
+                                  'Projects',
                                   style: TextStyle(color: Colors.black),
                                 ),
                                 subtitle: Text(
-                                    'Apply for collaborating on your peers projects',
+                                    'Take a peek at the Projects of the members',
                                     style: TextStyle(color: Colors.blueGrey)),
                               ),
                             ],
@@ -331,7 +292,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                   ),
-//             3rd CARD
+//             2nd CARD
                   Center(
                     child: Padding(
                       padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
@@ -343,16 +304,16 @@ class _MyHomePageState extends State<MyHomePage> {
                             children: <Widget>[
                               const ListTile(
                                 leading: Icon(
-                                  Icons.touch_app,
+                                  Icons.code,
                                   color: Colors.redAccent,
                                   size: 35.0,
                                 ),
                                 title: Text(
-                                  'Share Idea',
+                                  'Join As a Developer',
                                   style: TextStyle(color: Colors.black),
                                 ),
                                 subtitle: Text(
-                                    'Share your idea and pick developers to work on your project',
+                                    'Become a Ghost develper and get the opportunity to build projects',
                                     style: TextStyle(color: Colors.blueGrey)),
                               ),
                             ],
@@ -363,6 +324,41 @@ class _MyHomePageState extends State<MyHomePage> {
                             _currentPage = 2;
                           });
                         },
+                      ),
+                    ),
+                  ),
+//                   3rd CARD
+                  Center(
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                      child: FlatButton(
+                          child: Card(
+                            color: Colors.amber[300],
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                const ListTile(
+                                  leading: Icon(
+                                    Icons.assignment_ind,
+                                    color: Colors.redAccent,
+                                    size: 35.0,
+                                  ),
+                                  title: Text(
+                                    'Recruit Us',
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                  subtitle: Text(
+                                      'Share your idea and pick developers to work on your project',
+                                      style: TextStyle(color: Colors.blueGrey)),
+                                ),
+                              ],
+                            ),
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _currentPage = 3;
+                            });
+                          }
                       ),
                     ),
                   ),
@@ -377,14 +373,15 @@ class _MyHomePageState extends State<MyHomePage> {
             if (_currentPage == 1)
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  for (int rowNo = 0, _memID = 0; rowNo < 6; rowNo++)
+                  for (int rowNo = 0, _memID = 0; rowNo < 3; rowNo++)
                     (Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         for (int colNo = 0, num = _memID;
-                        colNo < 3 && _memID < 11;
+                        colNo < 3 && _memID < Members.members.length;
                         colNo++, _memID++, num = _memID)
                           (FlatButton(
                               padding: EdgeInsets.all(0),
@@ -397,14 +394,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                       shape: BoxShape.circle,
                                       image: DecorationImage(
                                           image: AssetImage(
-                                            'images/' + _imageMember[num],),
+                                            'images/' + Members.imageMember[num],),
                                           fit: BoxFit.fill
                                       ),
                                     ),
                                   ),
                                   SizedBox(height: 5),
-                                  Text(_members[_memID]),
-                                  Text(_membersPosition[_memID]),
+                                  Text(Members.members[_memID]),
+                                  Text(Members.membersPosition[_memID]),
                                   SizedBox(height: 15),
                                 ],
                               ),
@@ -418,9 +415,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                     builder: (context) =>
                                         PortfolioPage(
                                             memID: num,
-                                            name: _members[num],
+                                            name: Members.members[num],
                                             image: 'images/' +
-                                                _imageMember[num]),
+                                                Members.imageMember[num]),
                                   ),
                                 );
                               })),
@@ -432,17 +429,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
             //TODO: Add Content to Works Done Page (will contain our projects and events wew hold together)
             //This is the Works Done Page
-            else
-              if (_currentPage == 2)
-                Center(
-                  child: Column(
-                    children: <Widget>[
-                      Text('Works Done By our Team'),
-                      Text('Blah Blah Blah'),
-                    ],
-                  ),
-                )
-
+            else if(_currentPage == 2)
+            Center(
+            child: Text('Shoe Projects'),
+            )
               //TODO: Add Content to Join Us Page (will contain form to contact us and be part of our org)
               //This is the Join Us Page
               else
@@ -510,20 +500,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
           //TODO: Add Content to Login Page (Will contain the profile of the user, if Logged in, else login form(firebase auth))
           //This is the user Login Page
-//                else
-//                  if (_currentPage >= 4)
-//                    Container(
-//                      child: Column(
-//                        crossAxisAlignment: CrossAxisAlignment.stretch,
-//                        children: <Widget>[
-//                          SizedBox(
-//                            width: 10.0,
-//                          ),
-//                          Text('User'),
-//                          Text('Blah Blah Blah'),
-//                        ],
-//                      ),
-//                    )
+
         ],
       ),
       bottomNavigationBar: CurvedNavigationBar(
@@ -533,8 +510,8 @@ class _MyHomePageState extends State<MyHomePage> {
         //Icons of the CurvedNavigationBar
         items: <Widget>[
           Icon(Icons.home, size: 30, color: Colors.white),
-          Icon(Icons.person_pin, size: 30, color: Colors.white),
-          Icon(Icons.work, size: 30, color: Colors.white),
+          Icon(Icons.supervised_user_circle, size: 30, color: Colors.white),
+          Icon(Icons.search, size: 30, color: Colors.white),
           Icon(Icons.person_add, size: 30, color: Colors.white),
         ],
         color: Colors.blueGrey[900],
@@ -563,9 +540,184 @@ class Choice {
 }
 
 const List<Choice> choices = const <Choice>[
-  const Choice(title: 'Login', icon: Icons.person),
-  const Choice(title: 'Search Projects', icon: Icons.search),
+  const Choice(title: 'Works Done', icon: Icons.work),
+  const Choice(title: 'Login', icon: Icons.account_circle),
   const Choice(title: 'Share App', icon: Icons.share),
   const Choice(title: 'Contact Developers', icon: Icons.mail),
 
 ];
+
+
+class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
+  _SliverAppBarDelegate(this._tabBar);
+
+  final TabBar _tabBar;
+
+  @override
+  double get minExtent => _tabBar.preferredSize.height;
+
+  @override
+  double get maxExtent => _tabBar.preferredSize.height;
+
+  @override
+  Widget build(BuildContext context, double shrinkOffset,
+      bool overlapsContent) {
+    return new Container(
+      child: _tabBar,
+    );
+  }
+
+  @override
+  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
+    return false;
+  }
+}
+
+/// This is the stateless widget that the main application instantiates.
+class EventsPage extends StatefulWidget {
+  @override
+  _EventsPageState createState() => _EventsPageState();
+}
+
+class _EventsPageState extends State<EventsPage> {
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      padding: const EdgeInsets.all(10.0),
+      children: <Widget>[
+
+//         Only keep the first one
+        Padding(
+          padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+          child: Card(
+            child: InkWell(
+              splashColor: Colors.blue,
+              onTap: () {},
+              child: SizedBox(
+                height: 120,
+                child: Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: NetworkImage(
+                            "https://media-exp1.licdn.com/dms/image/C5603AQHFeBYzJ48Byg/profile-displayphoto-shrink_200_200/0?e=1594252800&v=beta&t=nvEKZjMyOi7nNS680AKc_GBXr7rB9GfKVxTHwcZXau4"),
+                        fit: BoxFit.fitWidth,
+                        alignment: Alignment.center,
+                      ),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget>[
+                        Container(
+                          color: Colors.blueGrey[900],
+                          child: Text(
+                            "Google HashCode 2020",
+                            style: TextStyle(
+                              color: Colors.amberAccent,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    )),
+              ),
+            ),
+          ),),
+        Card(
+          child: SizedBox(
+            height: 120,
+            child: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(
+                        "https://media-exp1.licdn.com/dms/image/C5603AQHFeBYzJ48Byg/profile-displayphoto-shrink_200_200/0?e=1594252800&v=beta&t=nvEKZjMyOi7nNS680AKc_GBXr7rB9GfKVxTHwcZXau4"),
+                    fit: BoxFit.fitWidth,
+                    alignment: Alignment.center,
+                  ),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    Container(
+                      color: Colors.blueGrey[900],
+                      child: Text(
+                        "Google HashCode 2020",
+                        style: TextStyle(
+                          color: Colors.amberAccent,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                )),
+          ),
+        ),
+        Card(
+          child: SizedBox(
+            height: 120,
+            child: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(
+                        "https://media-exp1.licdn.com/dms/image/C5603AQHFeBYzJ48Byg/profile-displayphoto-shrink_200_200/0?e=1594252800&v=beta&t=nvEKZjMyOi7nNS680AKc_GBXr7rB9GfKVxTHwcZXau4"),
+                    fit: BoxFit.fitWidth,
+                    alignment: Alignment.center,
+                  ),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    Container(
+                      color: Colors.blueGrey[900],
+                      child: Text(
+                        "Google HashCode 2020",
+                        style: TextStyle(
+                          color: Colors.amberAccent,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                )),
+          ),
+        ),
+        Card(
+          child: SizedBox(
+            height: 120,
+            child: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(
+                        "https://media-exp1.licdn.com/dms/image/C5603AQHFeBYzJ48Byg/profile-displayphoto-shrink_200_200/0?e=1594252800&v=beta&t=nvEKZjMyOi7nNS680AKc_GBXr7rB9GfKVxTHwcZXau4"),
+                    fit: BoxFit.fitWidth,
+                    alignment: Alignment.center,
+                  ),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    Container(
+                      color: Colors.blueGrey[900],
+                      child: Text(
+                        "Google HashCode 2020",
+                        style: TextStyle(
+                          color: Colors.amberAccent,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                )),
+          ),
+        ),
+      ],
+    );
+  }
+}

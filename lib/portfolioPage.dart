@@ -1,51 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+//import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import 'package:community/members.dart';
 
 //TODO: Collect and add the skills of the members
 //Skills of the members
-var skills = [
-  ['Android Studio', 'HTML', 'JavaScript', 'CSS'],
-  ['Machine Learning', 'Flutter', 'HTML', 'CSS','Python'],
-  ['HTML', 'CSS','JAVAscript', 'NodeJs'],
-  ['Android Studio', 'HTML', 'JavaScript', 'CSS'],
-  ['Machine Learning', 'Flutter', 'HTML', 'CSS'],
-  ['HTML', 'CSS','JAVAscript', 'NodeJs'],
-  ['Android Studio', 'HTML', 'JavaScript', 'CSS'],
-  ['Machine Learning', 'Flutter', 'HTML', 'CSS'],
-  ['HTML', 'CSS','JAVAscript', 'NodeJs'],
-  ['Android Studio', 'HTML', 'JavaScript', 'CSS'],
-  ['Machine Learning', 'Flutter', 'HTML', 'CSS'],
-  ['HTML', 'CSS','JAVAscript', 'NodeJs'],
-];
-
-var linkedin = [
-  'himeshnayak015',
-  'hareshnayak08',
-  'himeshnayak015',
-  'hareshnayak08',
-  'himeshnayak015',
-  'hareshnayak08',
-  'himeshnayak015',
-  'hareshnayak08',
-  'himeshnayak015',
-  'himeshnayak015',
-  'hareshnayak08',
-];
-
-var github = [
-  'HimeshNayak',
-  'hareshnayak',
-  'HimeshNayak',
-  'hareshnayak',
-  'HimeshNayak',
-  'hareshnayak',
-  'HimeshNayak',
-  'hareshnayak',
-  'HimeshNayak',
-  'HimeshNayak',
-  'hareshnayak',
-];
 
 class PortfolioPage extends StatelessWidget {
   PortfolioPage({Key key, this.title, this.memID, this.name, this.image}) : super(key: key);
@@ -58,6 +19,7 @@ class PortfolioPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: DefaultTabController(
         length: 3,
         child: NestedScrollView(
@@ -72,13 +34,13 @@ class PortfolioPage extends StatelessWidget {
                 flexibleSpace: FlexibleSpaceBar(
                   title:
                   Text(
-                          name,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            fontSize: 16.0,
-                          ),
-                        ),
+                    name,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontSize: 16.0,
+                    ),
+                  ),
                   background: Image.asset(
                     image,
                     fit: BoxFit.cover,
@@ -86,7 +48,7 @@ class PortfolioPage extends StatelessWidget {
                 ),
               ),
               SliverPersistentHeader(
-                pinned: false,
+                pinned: true,
                 delegate: _SliverAppBarDelegate(
                   TabBar(
                     labelStyle: TextStyle(
@@ -94,30 +56,32 @@ class PortfolioPage extends StatelessWidget {
                         fontWeight: FontWeight.w400,
                         color: Colors.white),
                     indicatorColor: Colors.amber[300],
-                    labelColor: Colors.blueGrey[900],
-                    labelPadding: EdgeInsets.all(0),
+                    labelColor: Colors.amber[300],
                     unselectedLabelColor: Colors.blueGrey[500],
                     tabs: [
+                      //Tab(icon: Icon(Icons.person, color: Colors.amber[300],), text: 'Skills', ),
+                      //Tab(icon: Icon(Icons.book), text: 'Projects'),
+                      //Tab(icon:Icon(Icons.contact_mail), text: 'Contact'),
                       Tab(child: Container(
-                      height: double.infinity,
+                        height: double.infinity,
 //                       padding: EdgeInsets,all(10),
-                      width:double.infinity,
-                      decoration:BoxDecoration(color: Colors.white),
-                      child: Icon(Icons.code),
+                        width:double.infinity,
+                        decoration:BoxDecoration(color: Colors.white),
+                        child: Icon(Icons.code),
                       ),
-                        ),
+                      ),
                       Tab(child: Container(
-                      height: double.infinity,
+                        height: double.infinity,
 //                       padding: EdgeInsets,all(10),
-                      width:double.infinity,
-                      decoration:BoxDecoration(color: Colors.white),
-                      child: Icon(Icons.code),),),
+                        width:double.infinity,
+                        decoration:BoxDecoration(color: Colors.white),
+                        child: Icon(Icons.book),),),
                       Tab(child: Container(
-                      height: double.infinity,
-                      padding: EdgeInsets,all(10),
-                      width:double.infinity,
-                      decoration:BoxDecoration(color: Colors.white),
-                      child: Icon(Icons.code),),)
+                        height: double.infinity,
+                        //padding: EdgeInsets,all(10),
+                        width:double.infinity,
+                        decoration:BoxDecoration(color: Colors.white),
+                        child: Icon(Icons.contact_mail),),)
                     ],
                   ),
                 ),
@@ -127,198 +91,135 @@ class PortfolioPage extends StatelessWidget {
           body: TabBarView(
             children: <Widget>[
               Center(
-                child: Column(
-                  children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                child: OverflowBox(
+                  maxHeight: double.infinity,
+                  child:
+                  //_buildBody(context),
+                    Column(
                       children: <Widget>[
-                        SizedBox(height: 20),
-                        Column(
-                          children: <Widget>[
-                            Padding(
-                              padding: EdgeInsets.all(10),
-                              child: SizedBox(
-                                height: 120,
-                                width: 120,
-                                child: Container(
-                                  child: Center(
-                                    child: Padding(
-                                      padding: EdgeInsets.symmetric(),
-                                      child: Image.network(
-                                          'https://qph.fs.quoracdn.net/main-qimg-28cadbd02699c25a88e5c78d73c7babc'),
-                                    ),
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
+                        for(int i = 0; i < Members.skills[memID].length; i++)
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(30, (i==0 && Members.skills[memID].length > 2)?50:10, 30, 10),
+                            child: SizedBox(
+                              //height: 120,
+                              child: Card(
+                                shadowColor: Colors.amber[300],
+                                child: ListTile(
+                                  leading: Icon(Icons.star, color: Colors.amber[300]),
+                                  title: Text(Members.skillsHead[memID][i]),
+                                  subtitle: Text(Members.skills[memID][i]),
                                   ),
                                 ),
                               ),
                             ),
-                            Padding(
-                              padding: EdgeInsets.all(10),
-                              child: SizedBox(
-                                height: 120,
-                                width: 120,
-                                child: Container(
-                                  child: Center(
-                                    child: Image.network(
-                                        'https://cdn.dribbble.com/users/1622791/screenshots/11174104/flutter_intro.png'),
-                                  ),
-                                  decoration:
-                                  BoxDecoration(color: Colors.white),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Column(
-                          children: <Widget>[
-//                            Card(
-//                              child: ListTile(
-//                                      leading:
-
-//                                      title: Text(
-//                                        name,
-//                                        style: TextStyle(color: Colors.black),
-//                                      ),
-//                                      subtitle: Text(
-//                                          linkedin[memID],
-//                                          style: TextStyle(color: Colors.blueGrey)),
-//                                    ),
-//                            ),
-                            Padding(
-                              padding: EdgeInsets.all(10),
-                              child: SizedBox(
-                                height: 120,
-                                width: 120,
-                                child: Container(
-                                  child: Center(
-                                      child: Padding(
-                                        padding: EdgeInsets.symmetric(),
-                                        child: Image.network(
-                                            'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRWSaBULh-ALdB1N0Ho9wh2HYbkeJcwNicgZubjH83EH2atsLpu&usqp=CAU'),
-                                      )),
-                                  decoration:
-                                  BoxDecoration(color: Colors.white),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.all(10),
-                              child: SizedBox(
-                                height: 120,
-                                width: 120,
-                                child: Container(
-                                  child: Center(
-                                    child: Padding(
-                                      child: Image.network(
-                                          'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRIyenRe1pADpoyKK3L6V-cuNxlUodEiI0XfDB0667-waYTO2LY&usqp=CAU'),
-                                      padding: EdgeInsets.symmetric(),
-                                    ),
-                                  ),
-                                  decoration:
-                                  BoxDecoration(color: Colors.white),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
                       ],
                     ),
-                  ],
                 ),
               ),
-              Column(
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.all(10),
-                    child: SizedBox(
-                      //height: 120,
-                      child: Card(
-                        child: ListTile(
-                          leading: Image.network(
-                              'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRWSaBULh-ALdB1N0Ho9wh2HYbkeJcwNicgZubjH83EH2atsLpu&usqp=CAU'),
-                          title: Text('Machine Learning'),
-                          subtitle:
-                          Text('Classification between a dog and a cat'),
-                          trailing: FloatingActionButton(
-                              child: Icon(Icons.edit),
-                              backgroundColor: Colors.amber[300],
-                              mini: true,
-                              onPressed: () {}),
+              Center(
+                child: OverflowBox(
+                  maxHeight: double.infinity,
+                  child: Column(
+                    children: <Widget>[
+                      for (int j = 0; j < Members.skills[memID].length; j++)
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(10, (j==0)?50:10, 10, 10),
+                          child: SizedBox(
+                            //height: 120,
+                            child: Card(
+                              shadowColor: Colors.amber[300],
+                              child: ListTile(
+                                title: Text(Members.skills[memID][j]),
+                                subtitle:
+                                Text(Members.skills[memID][j]),
+                                trailing: FloatingActionButton(
+                                    child: Icon(Icons.visibility),
+                                    backgroundColor: Colors.amber[300],
+                                    mini: true,
+                                    onPressed: () {}),
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
+                    ],
                   ),
-                  Padding(
-                    padding: EdgeInsets.all(10),
-                    child: SizedBox(
-                      //height: 120,
-                      child: Card(
-                        child: ListTile(
-                          leading: Image.network(
-                              'https://qph.fs.quoracdn.net/main-qimg-28cadbd02699c25a88e5c78d73c7babc'),
-                          title: Text('Rock Paper Scissors'),
-                          subtitle: Text('A python game'),
-                          trailing: FloatingActionButton(
-                              child: Icon(Icons.edit),
-                              backgroundColor: Colors.amber[300],
-                              mini: true,
-                              onPressed: () {}),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
-              Column(
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.all(10),
-                    child: SizedBox(
-                      //height: 120,
-                      child: Card(
-                        child: ListTile(
-                          leading: Image.asset(
-                              'images/github.png'),
-                          title: Text(name),
-                          subtitle:
-                          Text(github[memID]),
-                          trailing: FloatingActionButton(
-                              child: Icon(Icons.code),
-                              backgroundColor: Colors.amber[300],
-                              mini: true,
-                              onPressed: () {
-                                String url = 'https://github.com/' + github[memID];
-                                launch(url);
-                              }),
+              Center(
+                child: OverflowBox(
+                  maxHeight: double.infinity,
+                  child: Column(
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.all(10),
+                        child: SizedBox(
+                          //height: 120,
+                          child: Card(
+                            shadowColor: Colors.amber[300],
+                            child: ListTile(
+                              leading: Image.asset(
+                                  'images/github.png'),
+                              title: Text(Members.github[memID]),
+                              subtitle:
+                              Text('Github Profile'),
+                              trailing: FloatingActionButton(
+                                  child: Icon(Icons.code),
+                                  backgroundColor: Colors.amber[300],
+                                  mini: true,
+                                  onPressed: () {
+                                    String url = 'https://github.com/' + Members.github[memID];
+                                    launch(url);
+                                  }),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(10),
-                    child: SizedBox(
-                      //height: 120,
-                      child: Card(
-                        child: ListTile(
-                          leading: Image.asset(
-                              'images/linkedin.png'),
-                          title: Text(name),
-                          subtitle: Text(linkedin[memID]),
-                          trailing: FloatingActionButton(
-                              child: Icon(Icons.comment),
-                              backgroundColor: Colors.amber[300],
-                              mini: true,
-                              onPressed: () {
-                                String url = 'https://linkedin.com/in/' + linkedin[memID];
-                                launch(url);
-                              }),
+                      Padding(
+                        padding: EdgeInsets.all(10),
+                        child: SizedBox(
+                          //height: 120,
+                          child: Card(
+                            child: ListTile(
+                              leading: Image.asset(
+                                  'images/linkedin.png'),
+                              title: Text(Members.linkedin[memID]),
+                              subtitle: Text('Linkedin Profile'),
+                              trailing: FloatingActionButton(
+                                  child: Icon(Icons.comment),
+                                  backgroundColor: Colors.amber[300],
+                                  mini: true,
+                                  onPressed: () {
+                                    String url = 'https://linkedin.com/in/' + Members.linkedin[memID];
+                                    launch(url);
+                                  }),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
+                      Padding(
+                        padding: EdgeInsets.all(10),
+                        child: SizedBox(
+                          //height: 120,
+                          child: Card(
+                            child: ListTile(
+                              leading: Image.asset('images/gmail.png'),
+                              title: Text(Members.email[memID]),
+                              subtitle: Text('Email Address'),
+                              trailing: FloatingActionButton(
+                                  child: Icon(Icons.mail),
+                                  backgroundColor: Colors.amber[300],
+                                  mini: true,
+                                  onPressed: () {
+                                    var url = 'mailto:${Members.email[memID]}@gmail.com?subject=Message%20through%20App&body=Hi,%20$name';
+                                    launch(url);
+                                  }),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
             ],
           ),
@@ -351,3 +252,77 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
     return false;
   }
 }
+
+//Widget _buildBody(BuildContext context) {
+//  // TODO: get actual snapshot from Cloud Firestore
+//  return StreamBuilder<QuerySnapshot>(
+//    stream: Firestore.instance.collection('members').snapshots(),
+//    builder: (context, snapshot) {
+//      if (!snapshot.hasData) return LinearProgressIndicator();
+//
+//      return _buildList(context, snapshot.data.documents);
+//    },
+//  );
+//}
+//
+//Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
+//  return ListView(
+//    padding: const EdgeInsets.only(top: 20.0),
+//    children: snapshot.map((data) => _buildListItem(context, data)).toList(),
+//  );
+//}
+//
+//Widget _buildListItem(BuildContext context, DocumentSnapshot data) {
+//  final record = Record.fromSnapshot(data);
+//
+//  return Padding(
+//    key: ValueKey(record.name),
+//    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+//    child: Container(
+//      decoration: BoxDecoration(
+//        border: Border.all(color: Colors.grey),
+//        borderRadius: BorderRadius.circular(5.0),
+//      ),
+//      child: Column(
+//        children: [
+//          ListTile(
+//            title: Text(record.name),
+//            trailing: Text(record.likes.toString()),
+//            onTap: () => print(record),
+//          ),
+//          Column(
+//            children: <Widget>[
+//              for(int i = 0; i < record.skills.length; i++)
+//                Text(record.skills[i].toString(),
+//                  style: TextStyle(
+//                    fontSize: 20.0,
+//                  ),
+//                ),
+//            ],
+//          )
+//        ],
+//      ),
+//    ),
+//  );
+//}
+//
+//class Record {
+//  final String name;
+//  final int likes;
+//  final List<String> skills;
+//  final DocumentReference reference;
+//
+//  Record.fromMap(Map<String, dynamic> map, {this.reference})
+//      : assert(map['name'] != null),
+//        assert(map['likes'] != null),
+//        assert(map['skills'] != null),
+//        name = map['name'],
+//        likes = map['likes'],
+//        skills = map['skills'].cast<String>();
+//
+//  Record.fromSnapshot(DocumentSnapshot snapshot)
+//      : this.fromMap(snapshot.data, reference: snapshot.reference);
+//
+//  @override
+//  String toString() => "Record<$name:$likes:$skills>";
+//}

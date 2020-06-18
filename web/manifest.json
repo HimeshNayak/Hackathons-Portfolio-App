@@ -1,11 +1,11 @@
 {
-    "name": "portfolio",
-    "short_name": "portfolio",
+    "name": "community",
+    "short_name": "community",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A portfolio App",
+    "description": "A Firebase Flutter application.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

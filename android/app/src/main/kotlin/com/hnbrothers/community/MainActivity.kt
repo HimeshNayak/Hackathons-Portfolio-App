@@ -1,4 +1,4 @@
-package com.hnbrothers.portfolio
+package com.hnbrothers.community
 
 import io.flutter.embedding.android.FlutterActivity
 
