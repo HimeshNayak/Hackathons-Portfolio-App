@@ -1,38 +1,56 @@
 class Members {
   static List<String> members = [
-    'Himesh Nayak',
-    'Haresh Nayak',
-    'Parv Sharma',
-    'Sarthak Kh.',
-    'Kshitij Garg',
-    'Harsh Goyal',
-    'Rahul Gandhi',
-    'Shubham Rawal',
-    'Dhruv Pasricha',
+    'Frontend WebD',
+    'Backend WebD',
+    'UI/UX',
+    'Android',
+    'IOS',
+    'Flutter',
+    'C++',
+    'Java',
+    'Python',
+    'Google Cloud',
+    'Machine Learning',
   ];
 
   static List<String> membersPosition = [
-    'App Developer',
-    'ML Enthusiast',
-    'Web Developer',
-    'Web Developer',
-    'Web Developer',
-    'Web Developer',
-    'Web Developer',
-    'Web Developer',
-    'Web Developer'
+    'HTML, CSS, JS',
+    'NodeJs and DBMS',
+    'Graphic Design',
+    'Android Studio',
+    'Xcode',
+    'Android and IOS',
+    'Competitive Prog.',
+    'Android/Software',
+    '', '', ''
   ];
 
   static List<String> imageMember = [
-    'himesh.jpg',
-    'haresh.jpg',
-    'parv.jpg',
-    'sarthak.png',
-    'kshitij.jpg',
-    'harsh.jpg',
-    'rahul.jpg',
-    'shubham.jpg',
-    'dhruv.jpg'
+    'frontend.png',
+    'backend.png',
+    'uiux.png',
+    'andstudio.png',
+    'xcode.png',
+    'flutter.png',
+    'c.png',
+    'java.png',
+    'python.png',
+    'cloud.png',
+    'ml.png'
+  ];
+
+  static List<String> devSkill = [
+    'HTML',
+    'Javascript',
+    'UI/UX',
+    'Android Studio',
+    'X Code',
+    'Flutter',
+    'C++',
+    'Java',
+    'Python',
+    'Google Cloud',
+    'Machine Learning'
   ];
 
   static List<List<String>> skillsHead = [

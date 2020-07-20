@@ -11,9 +11,9 @@ import 'package:community/model/form.dart';
 import 'package:community/controller/form_controller.dart';
 
 //Routes
-import 'package:community/portfolioPage.dart';
 import 'package:community/worksPage.dart';
 import 'package:community/projectsPage.dart';
+import 'package:community/developers.dart';
 
 //Imported libs
 import 'package:gradient_text/gradient_text.dart';
@@ -109,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
   //Heading of the tabs given in CurvedNavigationBar in the Home Page
   static List<String> _pages = [
     'GoDev();',
-    'Portfolios',
+    'Developers',
     'Search Projects',
     'Join Us',
   ];
@@ -160,6 +160,8 @@ class _MyHomePageState extends State<MyHomePage> {
   TextEditingController skillsController = TextEditingController();
   TextEditingController ideasController = TextEditingController();
   TextEditingController projectsController = TextEditingController();
+
+  TextEditingController searchSkill = new TextEditingController();
 
   // Method to Submit Feedback and save it in Google Sheets
   void _submitForm() {
@@ -267,7 +269,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // overflow menu
         ],
       ),
-      body: Column(
+      body: ListView(
         children: <Widget>[
           SizedBox(
             height: 10.0,
@@ -495,7 +497,66 @@ class _MyHomePageState extends State<MyHomePage> {
                 SizedBox(
                   height: 20,
                 ),
-                for (int rowNo = 0, _memID = 0; rowNo < 3; rowNo++)
+
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal:20.0),
+                  child: new TextField(
+                    controller: searchSkill,
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                    decoration: InputDecoration(
+                      suffixIcon: new FloatingActionButton(
+                        heroTag: 'btnDevelopers',
+                        mini: true,
+                        child: Icon(Icons.search,
+                          color: Colors.white,
+                        ),
+                        backgroundColor: Colors.amber[300],
+                        onPressed: () {
+                          if (searchSkill.text == '') {
+                            _showSnackbar('Enter a Skill');
+                          }
+                          else {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    DeveloperPage(skill: searchSkill.text),
+                              ),
+                            );
+                          }
+                        },
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius:
+                        BorderRadius.circular(50.0),
+                        borderSide: BorderSide(
+                          color: Colors.amber[300],
+                        ),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius:
+                        BorderRadius.circular(50.0),
+                        borderSide: BorderSide(
+                          color: Colors.amber[300],
+                          width: 5.0,
+                        ),
+                      ),
+                      contentPadding: EdgeInsets.symmetric(
+                          horizontal: 30, vertical: 5),
+                      labelText: 'Search By Skill',
+                      labelStyle: TextStyle(color: Colors.white,),
+                      hintText: 'HTML, Android Studio, Machine Learning',
+                      hintStyle: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+
+                SizedBox(
+                  height: 20,
+                ),
+                for (int rowNo = 0, _memID = 0; rowNo < 4; rowNo++)
                   (new Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -531,11 +592,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               Navigator.push(
                                 context,
                                 new MaterialPageRoute(
-                                  builder: (context) => PortfolioPage(
-                                      memID: num,
-                                      name: Members.members[num],
-                                      image:
-                                          'images/' + Members.imageMember[num]),
+                                  builder: (context) => DeveloperPage(skill: Members.devSkill[num]),
                                 ),
                               );
                             })),
@@ -606,7 +663,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       label: Text('View More...'),
                       icon: Icon(Icons.more),
                       backgroundColor: Colors.blueGrey[500]),
-                  //_buildBody(context),
                 ],
               ),
             )
@@ -630,6 +686,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                                 controller: nameController,
                                 validator: (value) {
+                                  if (value.isEmpty) {
+                                    return 'Enter Your Name';
+                                  }
                                   return null;
                                 },
                                 decoration: InputDecoration(
@@ -667,7 +726,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 controller: emailController,
                                 validator: (value) {
                                   if (value.isEmpty) {
-                                    return '';
+                                    return 'Enter Valid Email';
                                   }
                                   return null;
                                 },
@@ -711,6 +770,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ),
                                   controller: linksController,
                                   validator: (value) {
+                                    if (value.isEmpty) {
+                                      return 'Enter Your Github Profile Link';
+                                    }
                                     return null;
                                   },
                                   keyboardType: TextInputType.multiline,
@@ -795,9 +857,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ),
                                   controller: ideasController,
                                   validator: (value) {
-//                                      if (value.isEmpty) {
-//                                        return 'Enter Valid Feedback';
-//                                      }
+                                      if (value.isEmpty) {
+                                        return 'Share your Idea/Event';
+                                      }
                                     return null;
                                   },
                                   keyboardType: TextInputType.multiline,
