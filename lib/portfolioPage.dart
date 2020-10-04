@@ -25,7 +25,7 @@ class PortfolioPage extends StatelessWidget {
             return <Widget>[
               SliverAppBar(
                 pinned: true,
-                backgroundColor: Colors.blueGrey[900],
+                backgroundColor: Colors.blueGrey[800],
                 title: Text(
                   name,
                   style: TextStyle(
@@ -165,7 +165,7 @@ class PortfolioPage extends StatelessWidget {
                                 trailing: FloatingActionButton(
                                     heroTag: 'linkedinbtn',
                                     child: Icon(Icons.comment),
-                                    backgroundColor: Colors.amber[300],
+                                    backgroundColor: Colors.amber[400],
                                     mini: true,
                                     onPressed: () {
                                       String url = linkedin;
