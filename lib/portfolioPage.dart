@@ -74,6 +74,10 @@ class PortfolioPage extends StatelessWidget {
               Center(
                 child: ListView(
                   children: [
+                    Container(
+                    padding: EdgeInsets.all(10,
+                    Text('This is the skills page', style: TextStyle(color: Colors.black, fontSize: 17, )),               
+                                           ),
                     for (int i = 0; i < skills.length;)
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
