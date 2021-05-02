@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:community/homePage.dart';
+import 'package:community/newUI.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -88,7 +90,8 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       debugShowCheckedModeBanner: false,
-      home: MyHomePage(title: 'Home Page'),
+      home: NewUIHomePage(),
+      // MyHomePage(title: 'Home Page'),
       //),
     );
   }
@@ -497,9 +500,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 SizedBox(
                   height: 20,
                 ),
-
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal:20.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: new TextField(
                     controller: searchSkill,
                     style: TextStyle(
@@ -509,15 +511,15 @@ class _MyHomePageState extends State<MyHomePage> {
                       suffixIcon: new FloatingActionButton(
                         heroTag: 'btnDevelopers',
                         mini: true,
-                        child: Icon(Icons.search,
+                        child: Icon(
+                          Icons.search,
                           color: Colors.white,
                         ),
                         backgroundColor: Colors.amber[300],
                         onPressed: () {
                           if (searchSkill.text == '') {
                             _showSnackbar('Enter a Skill');
-                          }
-                          else {
+                          } else {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -529,30 +531,29 @@ class _MyHomePageState extends State<MyHomePage> {
                         },
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderRadius:
-                        BorderRadius.circular(50.0),
+                        borderRadius: BorderRadius.circular(50.0),
                         borderSide: BorderSide(
                           color: Colors.amber[300],
                         ),
                       ),
                       enabledBorder: OutlineInputBorder(
-                        borderRadius:
-                        BorderRadius.circular(50.0),
+                        borderRadius: BorderRadius.circular(50.0),
                         borderSide: BorderSide(
                           color: Colors.amber[300],
                           width: 5.0,
                         ),
                       ),
-                      contentPadding: EdgeInsets.symmetric(
-                          horizontal: 30, vertical: 5),
+                      contentPadding:
+                          EdgeInsets.symmetric(horizontal: 30, vertical: 5),
                       labelText: 'Search By Skill',
-                      labelStyle: TextStyle(color: Colors.white,),
+                      labelStyle: TextStyle(
+                        color: Colors.white,
+                      ),
                       hintText: 'HTML, Android Studio, Machine Learning',
                       hintStyle: TextStyle(color: Colors.white),
                     ),
                   ),
                 ),
-
                 SizedBox(
                   height: 20,
                 ),
@@ -592,7 +593,8 @@ class _MyHomePageState extends State<MyHomePage> {
                               Navigator.push(
                                 context,
                                 new MaterialPageRoute(
-                                  builder: (context) => DeveloperPage(skill: Members.devSkill[num]),
+                                  builder: (context) => DeveloperPage(
+                                      skill: Members.devSkill[num]),
                                 ),
                               );
                             })),
@@ -857,9 +859,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ),
                                   controller: ideasController,
                                   validator: (value) {
-                                      if (value.isEmpty) {
-                                        return 'Share your Idea/Event';
-                                      }
+                                    if (value.isEmpty) {
+                                      return 'Share your Idea/Event';
+                                    }
                                     return null;
                                   },
                                   keyboardType: TextInputType.multiline,

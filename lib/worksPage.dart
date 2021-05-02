@@ -18,7 +18,6 @@ class WorksDoneApp extends StatelessWidget {
       home: WorksDone(),
     );
   }
-
 }
 
 class WorksDone extends StatefulWidget {
@@ -68,36 +67,47 @@ class _WorksDoneState extends State<WorksDone> {
                     child: Center(
                       child: ListView(
                         children: <Widget>[
-                          SizedBox(height: 10,),
-                          Image.asset('images/logows.png', height: 80),
-                          SizedBox(height: 20,),
-                          Text('TOGETHER WE BUILD',
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.amber[200],
-                              ),
-                              textAlign: TextAlign.center,
+                          SizedBox(
+                            height: 10,
                           ),
-                          Text('TOGETHER WE GROW',
+                          Image.asset('images/logows.png', height: 80),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            'TOGETHER WE BUILD',
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.amber[200],
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                          Text(
+                            'TOGETHER WE GROW',
                             style: TextStyle(
                               fontSize: 20,
                               color: Colors.amber[300],
                             ),
                             textAlign: TextAlign.center,
                           ),
-                          SizedBox(height: 40,),
-                          Text('An initiative to bridge the gap between the recuiter and developer by serving as a portal where you can post your ideas and apply for others\' too' ,
+                          SizedBox(
+                            height: 40,
+                          ),
+                          Text(
+                            'An initiative to bridge the gap between the recuiter and developer by serving as a portal where you can post your ideas and apply for others\' too',
                             style: TextStyle(
                               fontSize: 20,
                               color: Colors.blueGrey[100],
                             ),
                             textAlign: TextAlign.center,
                           ),
-                          SizedBox(height: 30,),
+                          SizedBox(
+                            height: 30,
+                          ),
                           Center(
                             child: Padding(
                               padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                              child: FlatButton(
+                              child: TextButton(
                                   child: Card(
                                     color: Colors.amber[300],
                                     child: Column(
@@ -111,24 +121,25 @@ class _WorksDoneState extends State<WorksDone> {
                                           ),
                                           title: Text(
                                             'Official Website',
-                                            style: TextStyle(color: Colors.black),
+                                            style:
+                                                TextStyle(color: Colors.black),
                                           ),
-                                          subtitle: Text(
-                                              'goDev();',
-                                              style: TextStyle(color: Colors.black54)),
+                                          subtitle: Text('goDev();',
+                                              style: TextStyle(
+                                                  color: Colors.black54)),
                                         ),
                                       ],
                                     ),
                                   ),
                                   onPressed: () {
-                                    String url = 'https://godev-community.web.app';
+                                    String url =
+                                        'https://godev-community.web.app';
                                     launch(url);
-                                  }
-                              ),
+                                  }),
                             ),
                           ),
                           SizedBox(height: 20),
-                          Image.asset('images/hnblogo.png', height:40),
+                          Image.asset('images/hnblogo.png', height: 40),
                         ],
                       ),
                     ),
@@ -175,12 +186,27 @@ class EventsPage extends StatefulWidget {
 }
 
 class _EventsPageState extends State<EventsPage> {
-
   List<List<String>> event = [
-    ['Google Hassh Code 2020', '21 February, 2020', 'Participated together as a team in Google Hash Code secured a decent rank.'],
-    ['Group Discussion on GMAFIA', '2 March, 2020', 'Discussuion about the various technologies and services of GMAFIA (Google, Microsoft, Amazon, Facebook, IBM, Apple)'],
-    ['Website Launch', '22 June, 2020', 'Built a website together to showcase our skills and invite others to come together and grow together.'],
-    ['App Launch', '23 June, 2020', 'App app built by Himesh Nayak and Haresh Nayak to aid the communication between the developers.']
+    [
+      'Google Hassh Code 2020',
+      '21 February, 2020',
+      'Participated together as a team in Google Hash Code secured a decent rank.'
+    ],
+    [
+      'Group Discussion on GMAFIA',
+      '2 March, 2020',
+      'Discussuion about the various technologies and services of GMAFIA (Google, Microsoft, Amazon, Facebook, IBM, Apple)'
+    ],
+    [
+      'Website Launch',
+      '22 June, 2020',
+      'Built a website together to showcase our skills and invite others to come together and grow together.'
+    ],
+    [
+      'App Launch',
+      '23 June, 2020',
+      'App app built by Himesh Nayak and Haresh Nayak to aid the communication between the developers.'
+    ]
   ];
 
   @override
@@ -190,7 +216,7 @@ class _EventsPageState extends State<EventsPage> {
       children: <Widget>[
 //         Only keep the first one
         Padding(
-          padding: EdgeInsets.fromLTRB(0,10,0,10),
+          padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
           child: Card(
             child: InkWell(
               splashColor: Colors.blue,
@@ -202,8 +228,7 @@ class _EventsPageState extends State<EventsPage> {
                 child: Container(
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage(
-                            'images/hashcode.jpg'),
+                        image: AssetImage('images/hashcode.jpg'),
                         fit: BoxFit.fitWidth,
                         alignment: Alignment.center,
                       ),
@@ -229,9 +254,10 @@ class _EventsPageState extends State<EventsPage> {
                     )),
               ),
             ),
-          ),),
+          ),
+        ),
         Padding(
-          padding: EdgeInsets.fromLTRB(0,10,0,10),
+          padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
           child: Card(
             child: InkWell(
               splashColor: Colors.blue,
@@ -243,8 +269,7 @@ class _EventsPageState extends State<EventsPage> {
                 child: Container(
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage(
-                            'images/gd.png'),
+                        image: AssetImage('images/gd.png'),
                         fit: BoxFit.fitWidth,
                         alignment: Alignment.center,
                       ),
@@ -270,9 +295,10 @@ class _EventsPageState extends State<EventsPage> {
                     )),
               ),
             ),
-          ),),
+          ),
+        ),
         Padding(
-          padding: EdgeInsets.fromLTRB(0,10,0,10),
+          padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
           child: Card(
             child: InkWell(
               splashColor: Colors.blue,
@@ -284,8 +310,7 @@ class _EventsPageState extends State<EventsPage> {
                 child: Container(
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage(
-                            'images/website.png'),
+                        image: AssetImage('images/website.png'),
                         fit: BoxFit.fitWidth,
                         alignment: Alignment.center,
                       ),
@@ -311,9 +336,10 @@ class _EventsPageState extends State<EventsPage> {
                     )),
               ),
             ),
-          ),),
+          ),
+        ),
         Padding(
-          padding: EdgeInsets.fromLTRB(0,10,0,10),
+          padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
           child: Card(
             child: InkWell(
               splashColor: Colors.blue,
@@ -325,8 +351,7 @@ class _EventsPageState extends State<EventsPage> {
                 child: Container(
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage(
-                            'images/appbanner.jpg'),
+                        image: AssetImage('images/appbanner.jpg'),
                         fit: BoxFit.fitWidth,
                         alignment: Alignment.center,
                       ),
@@ -352,7 +377,8 @@ class _EventsPageState extends State<EventsPage> {
                     )),
               ),
             ),
-          ),),
+          ),
+        ),
       ],
     );
   }
@@ -377,5 +403,4 @@ class _EventsPageState extends State<EventsPage> {
       },
     );
   }
-
 }
