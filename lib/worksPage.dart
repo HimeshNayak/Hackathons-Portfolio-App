@@ -108,34 +108,36 @@ class _WorksDoneState extends State<WorksDone> {
                             child: Padding(
                               padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
                               child: TextButton(
-                                  child: Card(
-                                    color: Colors.amber[300],
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: <Widget>[
-                                        const ListTile(
-                                          leading: Icon(
-                                            Icons.web,
-                                            color: Colors.white,
-                                            size: 35.0,
-                                          ),
-                                          title: Text(
-                                            'Official Website',
-                                            style:
-                                                TextStyle(color: Colors.black),
-                                          ),
-                                          subtitle: Text('goDev();',
-                                              style: TextStyle(
-                                                  color: Colors.black54)),
+                                child: Card(
+                                  color: Colors.amber[300],
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: <Widget>[
+                                      const ListTile(
+                                        leading: Icon(
+                                          Icons.web,
+                                          color: Colors.white,
+                                          size: 35.0,
                                         ),
-                                      ],
-                                    ),
+                                        title: Text(
+                                          'Official Website',
+                                          style: TextStyle(color: Colors.black),
+                                        ),
+                                        subtitle: Text(
+                                          'goDev();',
+                                          style:
+                                              TextStyle(color: Colors.black54),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  onPressed: () {
-                                    String url =
-                                        'https://godev-community.web.app';
-                                    launch(url);
-                                  }),
+                                ),
+                                onPressed: () {
+                                  String url =
+                                      'https://godev-community.web.app';
+                                  launch(url);
+                                },
+                              ),
                             ),
                           ),
                           SizedBox(height: 20),
@@ -226,32 +228,33 @@ class _EventsPageState extends State<EventsPage> {
               child: SizedBox(
                 height: 300,
                 child: Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('images/hashcode.jpg'),
-                        fit: BoxFit.fitWidth,
-                        alignment: Alignment.center,
-                      ),
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('images/hashcode.jpg'),
+                      fit: BoxFit.fitWidth,
+                      alignment: Alignment.center,
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        Container(
-                          color: Colors.blueGrey[900],
-                          height: 50,
-                          child: Text(
-                            'Google HashCode 2020',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                            ),
-                            textAlign: TextAlign.center,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      Container(
+                        color: Colors.blueGrey[900],
+                        height: 50,
+                        child: Text(
+                          'Google HashCode 2020',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
                           ),
+                          textAlign: TextAlign.center,
                         ),
-                      ],
-                    )),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
           ),
@@ -267,32 +270,33 @@ class _EventsPageState extends State<EventsPage> {
               child: SizedBox(
                 height: 200,
                 child: Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('images/gd.png'),
-                        fit: BoxFit.fitWidth,
-                        alignment: Alignment.center,
-                      ),
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('images/gd.png'),
+                      fit: BoxFit.fitWidth,
+                      alignment: Alignment.center,
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        Container(
-                          color: Colors.blueGrey[900],
-                          height: 50,
-                          child: Text(
-                            'Group Discussion on GMAFIA',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                            ),
-                            textAlign: TextAlign.center,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      Container(
+                        color: Colors.blueGrey[900],
+                        height: 50,
+                        child: Text(
+                          'Group Discussion on GMAFIA',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
                           ),
+                          textAlign: TextAlign.center,
                         ),
-                      ],
-                    )),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
           ),
@@ -308,32 +312,33 @@ class _EventsPageState extends State<EventsPage> {
               child: SizedBox(
                 height: 170,
                 child: Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('images/website.png'),
-                        fit: BoxFit.fitWidth,
-                        alignment: Alignment.center,
-                      ),
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('images/website.png'),
+                      fit: BoxFit.fitWidth,
+                      alignment: Alignment.center,
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        Container(
-                          color: Colors.blueGrey[900],
-                          height: 50,
-                          child: Text(
-                            'Website Launch',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                            ),
-                            textAlign: TextAlign.center,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      Container(
+                        color: Colors.blueGrey[900],
+                        height: 50,
+                        child: Text(
+                          'Website Launch',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
                           ),
+                          textAlign: TextAlign.center,
                         ),
-                      ],
-                    )),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
           ),
@@ -349,32 +354,33 @@ class _EventsPageState extends State<EventsPage> {
               child: SizedBox(
                 height: 170,
                 child: Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('images/appbanner.jpg'),
-                        fit: BoxFit.fitWidth,
-                        alignment: Alignment.center,
-                      ),
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('images/appbanner.jpg'),
+                      fit: BoxFit.fitWidth,
+                      alignment: Alignment.center,
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        Container(
-                          color: Colors.blueGrey[900],
-                          height: 50,
-                          child: Text(
-                            'App Launch',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                            ),
-                            textAlign: TextAlign.center,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      Container(
+                        color: Colors.blueGrey[900],
+                        height: 50,
+                        child: Text(
+                          'App Launch',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
                           ),
+                          textAlign: TextAlign.center,
                         ),
-                      ],
-                    )),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
           ),

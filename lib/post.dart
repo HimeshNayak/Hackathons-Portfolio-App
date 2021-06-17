@@ -37,14 +37,16 @@ class NewUIPost extends StatelessWidget {
             elevation: 0,
             actions: <Widget>[
               SizedBox(
-                  width: 60,
-                  height: 30,
-                  child: TextButton(
-                      style: TextButton.styleFrom(
-                        padding: EdgeInsets.all(0),
-                      ),
-                      onPressed: () {},
-                      child: Icon(Icons.search, color: Colors.black)))
+                width: 60,
+                height: 30,
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    padding: EdgeInsets.all(0),
+                  ),
+                  onPressed: () {},
+                  child: Icon(Icons.search, color: Colors.black),
+                ),
+              )
             ],
           ),
         ),
@@ -180,18 +182,21 @@ class _PostPageState extends State<PostPage> {
               ),
             ),
           ),
-          Row(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  backgroundColor: grey1,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    backgroundColor: grey1,
+                  ),
+                  onPressed: () {},
+                  child: Text('Submit'),
                 ),
-                onPressed: () {},
-                child: Text('Submit'),
               ),
-            ),
-          ])
+            ],
+          )
 //             TextField(maxLines: 4, decoration: InputDecoration(hintText: 'Description',),),
         ],
       ),
@@ -217,8 +222,10 @@ class PostTempState extends State<PostTemp>
   void initState() {
     super.initState();
 
-    controller =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 450));
+    controller = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 450),
+    );
     scaleAnimation =
         CurvedAnimation(parent: controller, curve: Curves.elasticInOut);
 
@@ -237,14 +244,17 @@ class PostTempState extends State<PostTemp>
         child: ScaleTransition(
           scale: scaleAnimation,
           child: Container(
-              margin: EdgeInsets.all(20.0),
-              padding: EdgeInsets.fromLTRB(5, 20, 5, 10),
-              height: 450.0,
-              decoration: ShapeDecoration(
-                  color: Colors.white,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0))),
-              child: Column(children: <Widget>[
+            margin: EdgeInsets.all(20.0),
+            padding: EdgeInsets.fromLTRB(5, 20, 5, 10),
+            height: 450.0,
+            decoration: ShapeDecoration(
+              color: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+            ),
+            child: Column(
+              children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Text(
@@ -254,19 +264,20 @@ class PostTempState extends State<PostTemp>
                   ),
                 ),
                 Container(
-                    margin: EdgeInsets.symmetric(vertical: 10),
-                    height: 370,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 5,
-                      physics: ClampingScrollPhysics(),
-                      shrinkWrap: true,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Container(
-                          padding: EdgeInsets.symmetric(horizontal: 5),
-                          width: 220,
-                          height: 370,
-                          child: Column(children: <Widget>[
+                  margin: EdgeInsets.symmetric(vertical: 10),
+                  height: 370,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 5,
+                    physics: ClampingScrollPhysics(),
+                    shrinkWrap: true,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Container(
+                        padding: EdgeInsets.symmetric(horizontal: 5),
+                        width: 220,
+                        height: 370,
+                        child: Column(
+                          children: <Widget>[
                             Container(
                               height: 300,
                               child: Image.network('${postImg[index]}',
@@ -294,11 +305,15 @@ class PostTempState extends State<PostTemp>
                                 icon: Icon(Icons.image, color: Colors.black),
                               ),
                             ),
-                          ]),
-                        );
-                      },
-                    )),
-              ])),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -318,8 +333,10 @@ class LoginState extends State<Login> with SingleTickerProviderStateMixin {
   void initState() {
     super.initState();
 
-    controller =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 450));
+    controller = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 450),
+    );
     scaleAnimation =
         CurvedAnimation(parent: controller, curve: Curves.elasticInOut);
 
@@ -346,38 +363,42 @@ class LoginState extends State<Login> with SingleTickerProviderStateMixin {
         child: ScaleTransition(
           scale: scaleAnimation,
           child: Container(
-              margin: EdgeInsets.all(20.0),
-              padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 5),
-              height: 400.0,
-              decoration: ShapeDecoration(
-                  color: Colors.white,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0))),
-              child: ListView(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Text(
-                      'Team Name',
-                      style: TextStyle(
-                          fontSize: 20.0, fontWeight: FontWeight.bold),
-                    ),
+            margin: EdgeInsets.all(20.0),
+            padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 5),
+            height: 400.0,
+            decoration: ShapeDecoration(
+              color: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+            ),
+            child: ListView(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Text(
+                    'Team Name',
+                    style:
+                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                   ),
-                  for (int k = 0; k < 4; k++)
-                    Padding(
-                      padding: EdgeInsets.symmetric(vertical: 5),
-                      child: Card(
-                        child: ListTile(
-                            leading: Image.network(''),
-                            title: Text(
-                              '${teamMem[k]}',
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                for (int k = 0; k < 4; k++)
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 5),
+                    child: Card(
+                      child: ListTile(
+                        leading: Image.network(''),
+                        title: Text(
+                          '${teamMem[k]}',
+                          style: TextStyle(fontWeight: FontWeight.bold),
 //                                    subtitle: Text('')
-                            )),
+                        ),
                       ),
                     ),
-                ],
-              )),
+                  ),
+              ],
+            ),
+          ),
         ),
       ),
     );

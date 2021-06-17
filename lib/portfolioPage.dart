@@ -76,11 +76,13 @@ class PortfolioPage extends StatelessWidget {
                   children: [
                     Container(
                       padding: EdgeInsets.all(10),
-                      child: Text('This is the skills page',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 17,
-                          )),
+                      child: Text(
+                        'This is the skills page',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 17,
+                        ),
+                      ),
                     ),
                     for (int i = 0; i < skills.length;)
                       Row(
@@ -95,8 +97,9 @@ class PortfolioPage extends StatelessWidget {
                                 color: Colors.white,
                                 border: Border.all(color: Colors.amber[300]),
                                 borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(20),
-                                    bottomRight: Radius.circular(20)),
+                                  topLeft: Radius.circular(20),
+                                  bottomRight: Radius.circular(20),
+                                ),
                               ),
                               child: Text(
                                 skills[i++],
@@ -113,10 +116,13 @@ class PortfolioPage extends StatelessWidget {
                               width: 150,
                               decoration: BoxDecoration(
                                 color: Colors.white,
-                                border: Border.all(color: Colors.amber[300]),
+                                border: Border.all(
+                                  color: Colors.amber[300],
+                                ),
                                 borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(20),
-                                    bottomLeft: Radius.circular(20)),
+                                  topRight: Radius.circular(20),
+                                  bottomLeft: Radius.circular(20),
+                                ),
                               ),
                               child: Text(
                                 skills[i++],
@@ -148,14 +154,15 @@ class PortfolioPage extends StatelessWidget {
                                 title: Text(github),
                                 subtitle: Text('Github Profile'),
                                 trailing: FloatingActionButton(
-                                    heroTag: 'gitbtn',
-                                    child: Icon(Icons.code),
-                                    backgroundColor: Colors.amber[300],
-                                    mini: true,
-                                    onPressed: () {
-                                      String url = github;
-                                      launch(url);
-                                    }),
+                                  heroTag: 'gitbtn',
+                                  child: Icon(Icons.code),
+                                  backgroundColor: Colors.amber[300],
+                                  mini: true,
+                                  onPressed: () {
+                                    String url = github;
+                                    launch(url);
+                                  },
+                                ),
                               ),
                             ),
                           ),
@@ -171,14 +178,15 @@ class PortfolioPage extends StatelessWidget {
                                 title: Text(linkedin),
                                 subtitle: Text('Linkedin Profile'),
                                 trailing: FloatingActionButton(
-                                    heroTag: 'linkedinbtn',
-                                    child: Icon(Icons.comment),
-                                    backgroundColor: Colors.amber[400],
-                                    mini: true,
-                                    onPressed: () {
-                                      String url = linkedin;
-                                      launch(url);
-                                    }),
+                                  heroTag: 'linkedinbtn',
+                                  child: Icon(Icons.comment),
+                                  backgroundColor: Colors.amber[400],
+                                  mini: true,
+                                  onPressed: () {
+                                    String url = linkedin;
+                                    launch(url);
+                                  },
+                                ),
                               ),
                             ),
                           ),
@@ -193,15 +201,16 @@ class PortfolioPage extends StatelessWidget {
                               title: Text(email),
                               subtitle: Text('Email Address'),
                               trailing: FloatingActionButton(
-                                  heroTag: 'emailbtn',
-                                  child: Icon(Icons.mail),
-                                  backgroundColor: Colors.amber[300],
-                                  mini: true,
-                                  onPressed: () {
-                                    var url =
-                                        'mailto:$email@gmail.com?subject=Message%20through%20App&body=Hi,%20$name';
-                                    launch(url);
-                                  }),
+                                heroTag: 'emailbtn',
+                                child: Icon(Icons.mail),
+                                backgroundColor: Colors.amber[300],
+                                mini: true,
+                                onPressed: () {
+                                  var url =
+                                      'mailto:$email@gmail.com?subject=Message%20through%20App&body=Hi,%20$name';
+                                  launch(url);
+                                },
+                              ),
                             ),
                           ),
                         ),

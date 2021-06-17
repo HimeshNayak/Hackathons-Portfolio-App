@@ -65,12 +65,14 @@ class SearchPageState extends State<SearchPage> {
             elevation: 0,
             actions: <Widget>[
               SizedBox(
-                  width: 60,
-                  height: 30,
-                  child: FlatButton(
-                      padding: EdgeInsets.all(0),
-                      onPressed: () {},
-                      child: Icon(Icons.home, color: Colors.black)))
+                width: 60,
+                height: 30,
+                child: FlatButton(
+                  padding: EdgeInsets.all(0),
+                  onPressed: () {},
+                  child: Icon(Icons.home, color: Colors.black),
+                ),
+              ),
             ],
           ),
         ),
@@ -93,65 +95,67 @@ class SearchPageState extends State<SearchPage> {
 //         selectedItemColor: Colors.amber[800],
 //         onTap: _onItemTapped,
         ),
-        body: ListView(children: <Widget>[
-          Container(
-            height: 50,
-            padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5),
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey,
-                      offset: Offset(0.0, 1.0), //(x,y)
-                      blurRadius: 1.0,
-                    ),
-                  ],
-                  borderRadius: BorderRadius.circular(25.0),
-                  border: Border.all(
-                      color: Colors.grey.withOpacity(0.4), width: 1.0),
-                  color: Colors.white),
-              child: Row(
-                children: [
-                  SizedBox(width: 20),
-                  Expanded(
-                    child: TextField(
-                      decoration: InputDecoration(
-                        hintText: "Search",
-                        enabledBorder: new UnderlineInputBorder(
-                          borderSide: new BorderSide(color: Colors.transparent),
+        body: ListView(
+          children: <Widget>[
+            Container(
+              height: 50,
+              padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5),
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey,
+                        offset: Offset(0.0, 1.0), //(x,y)
+                        blurRadius: 1.0,
+                      ),
+                    ],
+                    borderRadius: BorderRadius.circular(25.0),
+                    border: Border.all(
+                        color: Colors.grey.withOpacity(0.4), width: 1.0),
+                    color: Colors.white),
+                child: Row(
+                  children: [
+                    SizedBox(width: 20),
+                    Expanded(
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintText: "Search",
+                          enabledBorder: new UnderlineInputBorder(
+                            borderSide:
+                                new BorderSide(color: Colors.transparent),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  IconButton(
-                    icon: Icon(
-                      Icons.search,
-                      color: Colors.deepPurple,
+                    IconButton(
+                      icon: Icon(
+                        Icons.search,
+                        color: Colors.deepPurple,
+                      ),
+                      onPressed: () {
+                        print("your menu action here");
+                      },
                     ),
-                    onPressed: () {
-                      print("your menu action here");
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: Text(
-                  'Mentors',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                      color: Colors.black),
+                  ],
                 ),
               ),
-              SizedBox(
-                width: 50,
-                child: FlatButton(
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  child: Text(
+                    'Mentors',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: Colors.black),
+                  ),
+                ),
+                SizedBox(
+                  width: 50,
+                  child: FlatButton(
                     padding: EdgeInsets.all(0),
                     onPressed: () {
 //                       if (login == false)
@@ -160,11 +164,12 @@ class SearchPageState extends State<SearchPage> {
 //                           builder: (_) => Login(),
 //                         );
                     },
-                    child: Icon(Icons.arrow_forward, color: Colors.black)),
-              ),
-            ],
-          ),
-          Container(
+                    child: Icon(Icons.arrow_forward, color: Colors.black),
+                  ),
+                ),
+              ],
+            ),
+            Container(
 //                   margin: EdgeInsets.symmetric(vertical: 10),
               height: 150,
               child: ListView.builder(
@@ -176,31 +181,32 @@ class SearchPageState extends State<SearchPage> {
                   return Container(
                     padding: EdgeInsets.symmetric(horizontal: 5),
                     width: 150,
-                    child: Stack(children: <Widget>[
-                      FlatButton(
-                        padding: EdgeInsets.all(0),
-                        onPressed: () {},
-                        child: Container(
-                          color: grey1,
-                          height: 150,
-                          child: DecoratedBox(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              border: Border.all(),
+                    child: Stack(
+                      children: <Widget>[
+                        FlatButton(
+                          padding: EdgeInsets.all(0),
+                          onPressed: () {},
+                          child: Container(
+                            color: grey1,
+                            height: 150,
+                            child: DecoratedBox(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                border: Border.all(),
+                              ),
+                              child: Image.network('${arrived[index]}',
+                                  fit: BoxFit.cover),
                             ),
-                            child: Image.network('${arrived[index]}',
-                                fit: BoxFit.cover),
                           ),
                         ),
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        child: Container(
-                          width: 150,
-                          height: 60,
-                          padding: EdgeInsets.all(0),
-                          color: Colors.black26,
-                          child: Padding(
+                        Positioned(
+                          bottom: 0,
+                          child: Container(
+                            width: 150,
+                            height: 60,
+                            padding: EdgeInsets.all(0),
+                            color: Colors.black26,
+                            child: Padding(
                               padding: EdgeInsets.all(0),
                               child: ListTile(
                                 title: Text(
@@ -213,84 +219,93 @@ class SearchPageState extends State<SearchPage> {
                                   textAlign: TextAlign.center,
                                   style: TextStyle(color: Colors.white),
                                 ),
-                              )),
-                        ),
-                      )
-                    ]),
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
                   );
                 },
-              )),
-          ListView.builder(
+              ),
+            ),
+            ListView.builder(
               itemCount: 5,
               physics: ClampingScrollPhysics(),
               shrinkWrap: true,
               itemBuilder: (BuildContext context, int k) {
                 return Container(
-                    padding: EdgeInsets.all(10),
-                    child: Column(
-                      children: <Widget>[
-                        Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              Text(
-                                '${_category[k]}',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
+                  padding: EdgeInsets.all(10),
+                  child: Column(
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          Text(
+                            '${_category[k]}',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 20),
+                          ),
+                          Spacer(),
+                          SizedBox(
+                            height: 40,
+                            child: IconButton(
+                              icon: Icon(
+                                Icons.arrow_forward,
                               ),
-                              Spacer(),
-                              SizedBox(
-                                height: 40,
-                                child: IconButton(
-                                    icon: Icon(
-                                      Icons.arrow_forward,
-                                    ),
-                                    onPressed: () {
+                              onPressed: () {
 //                     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context )=> NavDrawer()));
-                                    }),
-                              ),
-                            ]),
-                        Container(
-                          margin: EdgeInsets.symmetric(vertical: 10),
-                          height: 90,
-                          child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: 3,
-                              physics: ClampingScrollPhysics(),
-                              shrinkWrap: true,
-                              itemBuilder: (BuildContext context, int index) {
-                                return Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 10),
-                                  height: 80,
-                                  width: 100,
-                                  child: FlatButton(
-                                    padding: EdgeInsets.all(0),
-                                    onPressed: () {
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: 10),
+                        height: 90,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: 3,
+                          physics: ClampingScrollPhysics(),
+                          shrinkWrap: true,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Container(
+                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              height: 80,
+                              width: 100,
+                              child: FlatButton(
+                                padding: EdgeInsets.all(0),
+                                onPressed: () {
 //                           Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=> AcademyPage()));
-                                    },
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: <Widget>[
-                                        CircleAvatar(
-                                          backgroundColor: Colors.transparent,
-                                          radius: 30,
-                                          backgroundImage: NetworkImage(
-                                            '${_subCatImage[index]}',
-                                          ),
-                                        ),
-                                        Text('${_subCatFW[index]}',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold)),
-                                      ],
+                                },
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    CircleAvatar(
+                                      backgroundColor: Colors.transparent,
+                                      radius: 30,
+                                      backgroundImage: NetworkImage(
+                                        '${_subCatImage[index]}',
+                                      ),
                                     ),
-                                  ),
-                                );
-                              }),
+                                    Text('${_subCatFW[index]}',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold)),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
                         ),
-                      ],
-                    ));
-              }),
-        ]),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

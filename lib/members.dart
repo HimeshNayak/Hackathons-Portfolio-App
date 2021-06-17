@@ -22,7 +22,9 @@ class Members {
     'Android and IOS',
     'Competitive Prog.',
     'Android/Software',
-    '', '', ''
+    '',
+    '',
+    ''
   ];
 
   static List<String> imageMember = [
