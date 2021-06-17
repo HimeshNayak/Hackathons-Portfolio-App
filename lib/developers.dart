@@ -31,36 +31,46 @@ class DeveloperPage extends StatelessWidget {
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                Text('Skills :',
-                style: TextStyle(
-                  fontSize: 20,
+                Text(
+                  'Skills :',
+                  style: TextStyle(
+                    fontSize: 20,
+                  ),
                 ),
-                ),
-                for(int i = 0; i < record.skills.length; i++)
-                  Text(record.skills[i],
-                  textAlign: TextAlign.center),
+                for (int i = 0; i < record.skills.length; i++)
+                  Text(record.skills[i], textAlign: TextAlign.center),
                 SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <IconButton>[
                     IconButton(
-                      icon: Image.asset('images/github.png', height: 30,),
-                      onPressed: (){
+                      icon: Image.asset(
+                        'images/github.png',
+                        height: 30,
+                      ),
+                      onPressed: () {
                         var url = record.github;
                         launch(url);
                       },
                     ),
                     IconButton(
-                      icon: Image.asset('images/linkedin.png', height: 30,),
-                      onPressed: (){
+                      icon: Image.asset(
+                        'images/linkedin.png',
+                        height: 30,
+                      ),
+                      onPressed: () {
                         var url = record.linkedin;
                         launch(url);
                       },
                     ),
                     IconButton(
-                      icon: Image.asset('images/gmail.png', height: 30,),
-                      onPressed: (){
-                        var url = 'mailto:developer.godev@gmail.com?cc=${record.email}&subject=Message%20from%20GoDev&body=Hi,%20${record.name}';
+                      icon: Image.asset(
+                        'images/gmail.png',
+                        height: 30,
+                      ),
+                      onPressed: () {
+                        var url =
+                            'mailto:developer.godev@gmail.com?cc=${record.email}&subject=Message%20from%20GoDev&body=Hi,%20${record.name}';
                         launch(url);
                       },
                     ),
@@ -76,7 +86,9 @@ class DeveloperPage extends StatelessWidget {
 
   Widget _buildBody(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: Firestore.instance.collection('members').where("skills", arrayContainsAny: [skill]).snapshots(),
+      stream: Firestore.instance
+          .collection('members')
+          .where("skills", arrayContainsAny: [skill]).snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) return LinearProgressIndicator();
         return _buildList(context, snapshot.data.documents);
@@ -107,7 +119,12 @@ class DeveloperPage extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => PortfolioPage(email:record.email, name:record.name, github: record.github, linkedin: record.linkedin, skills: record.skills),
+                  builder: (context) => PortfolioPage(
+                      email: record.email,
+                      name: record.name,
+                      github: record.github,
+                      linkedin: record.linkedin,
+                      skills: record.skills),
                 ),
               );
               print(record.documentID);
@@ -125,12 +142,13 @@ class DeveloperPage extends StatelessWidget {
                 child: Icon(Icons.mail, color: Colors.white),
               ),
               title: Text(record.name),
-              subtitle: Text('..., $skill, ...', style: TextStyle(fontWeight: FontWeight.bold)),
-              ),
+              subtitle: Text('..., $skill, ...',
+                  style: TextStyle(fontWeight: FontWeight.bold)),
             ),
           ),
         ),
-      );
+      ),
+    );
   }
 }
 
@@ -160,6 +178,5 @@ class Record {
       : this.fromMap(snapshot.data, reference: snapshot.reference);
 
   @override
-  String toString() =>
-      "Record<$name:$skills:$email:$github:$linkedin>";
+  String toString() => "Record<$name:$skills:$email:$github:$linkedin>";
 }

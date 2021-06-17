@@ -9,7 +9,8 @@ class FormController {
   final void Function(String) callback;
 
   // Google App Script Web URL.
-  static const String URL = "https://script.google.com/macros/s/AKfycbwwM4MBT0Ial6KH5YY9MFVkJGkgULCnAupZUU0Wfz9DF_7gdJk/exec";
+  static const String URL =
+      "https://script.google.com/macros/s/AKfycbwwM4MBT0Ial6KH5YY9MFVkJGkgULCnAupZUU0Wfz9DF_7gdJk/exec";
 
   // Success Status Message
   static const STATUS_SUCCESS = "SUCCESS";
@@ -21,11 +22,11 @@ class FormController {
   /// and sends HTTP GET request on [URL]. On successful response, [callback] is called.
   void submitForm(FeedbackForm feedbackForm) async {
     try {
-      await http.get(
-          URL + feedbackForm.toParams()
-      ).then((response){
-        callback(convert.jsonDecode(response.body)['status']);
-      });
+      await http.get(URL + feedbackForm.toParams()).then(
+        (response) {
+          callback(convert.jsonDecode(response.body)['status']);
+        },
+      );
     } catch (e) {
       print(e);
     }

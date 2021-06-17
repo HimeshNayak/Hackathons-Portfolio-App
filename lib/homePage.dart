@@ -24,8 +24,12 @@ class NewUIHomePage extends StatelessWidget {
             leading: IconButton(
               icon: Icon(Icons.cloud, color: Colors.black),
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => LoginPage()));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => LoginPage(),
+                  ),
+                );
               },
             ),
 //             SizedBox(
@@ -47,19 +51,23 @@ class NewUIHomePage extends StatelessWidget {
             elevation: 0,
             actions: <Widget>[
               SizedBox(
-                  width: 60,
-                  height: 30,
-                  child: TextButton(
-                      style: TextButton.styleFrom(
-                        padding: EdgeInsets.all(0),
+                width: 60,
+                height: 30,
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    padding: EdgeInsets.all(0),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SearchPage(),
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => SearchPage()));
-                      },
-                      child: Icon(Icons.search, color: Colors.black)))
+                    );
+                  },
+                  child: Icon(Icons.search, color: Colors.black),
+                ),
+              )
             ],
           ),
         ),
@@ -135,53 +143,59 @@ class _HomeState extends State<HomePage> {
               SizedBox(
                 width: 50,
                 child: TextButton(
-                    style: TextButton.styleFrom(
-                      padding: EdgeInsets.all(0),
-                    ),
-                    onPressed: () {},
-                    child: Icon(Icons.arrow_forward, color: Colors.black)),
+                  style: TextButton.styleFrom(
+                    padding: EdgeInsets.all(0),
+                  ),
+                  onPressed: () {},
+                  child: Icon(Icons.arrow_forward, color: Colors.black),
+                ),
               ),
             ],
           ),
           Container(
-              margin: EdgeInsets.symmetric(vertical: 10),
-              height: 70,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: 5,
-                physics: ClampingScrollPhysics(),
-                shrinkWrap: true,
-                itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                    padding: EdgeInsets.symmetric(horizontal: 5),
-                    width: 72,
-                    child: TextButton(
-                        style: TextButton.styleFrom(
-                          padding: EdgeInsets.all(0),
+            margin: EdgeInsets.symmetric(vertical: 10),
+            height: 70,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: 5,
+              physics: ClampingScrollPhysics(),
+              shrinkWrap: true,
+              itemBuilder: (BuildContext context, int index) {
+                return Container(
+                  padding: EdgeInsets.symmetric(horizontal: 5),
+                  width: 72,
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      padding: EdgeInsets.all(0),
+                    ),
+                    onPressed: () {
+                      if (login == false) {
+                        showDialog(
+                          context: context,
+                          builder: (_) => Login(),
+                        );
+                      } else {
+                        showDialog(
+                          context: context,
+                          builder: (_) => Team(),
+                        );
+                      }
+                    },
+                    child: CircleAvatar(
+                      backgroundColor: Colors.black,
+                      radius: 31,
+                      child: CircleAvatar(
+                        radius: 30,
+                        backgroundImage: NetworkImage(
+                          '${postImg[index]}',
                         ),
-                        onPressed: () {
-                          if (login == false) {
-                            showDialog(
-                                context: context, builder: (_) => Login());
-                          } else {
-                            showDialog(
-                              context: context,
-                              builder: (_) => Team(),
-                            );
-                          }
-                        },
-                        child: CircleAvatar(
-                          backgroundColor: Colors.black,
-                          radius: 31,
-                          child: CircleAvatar(
-                              radius: 30,
-                              backgroundImage: NetworkImage(
-                                '${postImg[index]}',
-                              )),
-                        )),
-                  );
-                },
-              )),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
 //               SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -199,191 +213,211 @@ class _HomeState extends State<HomePage> {
               SizedBox(
                 width: 50,
                 child: TextButton(
-                    style: TextButton.styleFrom(
-                      padding: EdgeInsets.all(0),
-                    ),
-                    onPressed: () {
-                      if (login == false)
-                        showDialog(
-                          context: context,
-                          builder: (_) => Login(),
-                        );
-                    },
-                    child: Icon(Icons.arrow_forward, color: Colors.black)),
+                  style: TextButton.styleFrom(
+                    padding: EdgeInsets.all(0),
+                  ),
+                  onPressed: () {
+                    if (login == false)
+                      showDialog(
+                        context: context,
+                        builder: (_) => Login(),
+                      );
+                  },
+                  child: Icon(Icons.arrow_forward, color: Colors.black),
+                ),
               ),
             ],
           ),
           Container(
 //                   margin: EdgeInsets.symmetric(vertical: 10),
-              height: 200,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: 5,
-                physics: ClampingScrollPhysics(),
-                shrinkWrap: true,
-                itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                    padding: EdgeInsets.symmetric(horizontal: 5),
-                    width: 150,
-                    child: TextButton(
-                      style: TextButton.styleFrom(
-                        padding: EdgeInsets.all(0),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => NewUIInfo()));
-                      },
-                      child: Container(
-                        color: grey1,
-                        height: 200,
-                        child: DecoratedBox(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            border: Border.all(),
-                          ),
-                          child: Image.network('${arrived[index]}',
-                              fit: BoxFit.cover),
+            height: 200,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: 5,
+              physics: ClampingScrollPhysics(),
+              shrinkWrap: true,
+              itemBuilder: (BuildContext context, int index) {
+                return Container(
+                  padding: EdgeInsets.symmetric(horizontal: 5),
+                  width: 150,
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      padding: EdgeInsets.all(0),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => NewUIInfo(),
                         ),
+                      );
+                    },
+                    child: Container(
+                      color: grey1,
+                      height: 200,
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          border: Border.all(),
+                        ),
+                        child: Image.network('${arrived[index]}',
+                            fit: BoxFit.cover),
                       ),
                     ),
-                  );
-                },
-              )),
+                  ),
+                );
+              },
+            ),
+          ),
           SizedBox(height: 10),
 //           Container(height: 2, color: Colors.black26),
 //                     Container(height: 2, color: Colors.black26),
 
 //           SizedBox(height: 5),
           for (int i = 0; i < 5; i++)
-            Stack(children: <Widget>[
-              Container(
+            Stack(
+              children: <Widget>[
+                Container(
                   margin: EdgeInsets.symmetric(vertical: 10),
                   color: grey1,
                   height: 350,
-                  child: Image.network('${postImg[i]}', fit: BoxFit.cover)),
-              Positioned(
-                top: 20,
-                right: 10.0,
-                child: Container(
-                  color: Colors.transparent,
-                  child: Row(children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 5),
-                      child: Text(
-                        '${teamMem[i]}',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 40,
-                      child: TextButton(
-                          style: TextButton.styleFrom(
-                            padding: EdgeInsets.all(0),
+                  child: Image.network('${postImg[i]}', fit: BoxFit.cover),
+                ),
+                Positioned(
+                  top: 20,
+                  right: 10.0,
+                  child: Container(
+                    color: Colors.transparent,
+                    child: Row(
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 5),
+                          child: Text(
+                            '${teamMem[i]}',
+                            style: TextStyle(color: Colors.white),
                           ),
-                          onPressed: () {},
-                          child: CircleAvatar(
-                            backgroundColor: Colors.black,
-                            radius: 21,
+                        ),
+                        SizedBox(
+                          width: 40,
+                          child: TextButton(
+                            style: TextButton.styleFrom(
+                              padding: EdgeInsets.all(0),
+                            ),
+                            onPressed: () {},
                             child: CircleAvatar(
+                              backgroundColor: Colors.black,
+                              radius: 21,
+                              child: CircleAvatar(
                                 radius: 20,
                                 backgroundImage: NetworkImage(
                                   '${arrived[i]}',
-                                )),
-                          )),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ]),
+                  ),
                 ),
-              ),
-              Positioned(
-                top: 260.0,
-                left: 0.0,
-                right: 0.0,
+                Positioned(
+                  top: 260.0,
+                  left: 0.0,
+                  right: 0.0,
 //                 child: Center(
-                child: Container(
+                  child: Container(
                     padding: EdgeInsets.only(bottom: 5),
                     color: Colors.black26,
 //                     height: MediaQuery.of(context).size.height,
                     height: 100,
                     child: TextButton(
-                        style: TextButton.styleFrom(
-                          padding: EdgeInsets.all(0),
-                        ),
-                        onPressed: () {},
-                        child: Column(children: <Widget>[
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.all(0),
+                      ),
+                      onPressed: () {},
+                      child: Column(
+                        children: <Widget>[
 //                             Container(height: 2, color: Colors.white70),
                           Padding(
                             padding: EdgeInsets.only(top: 5),
-                            child: Text('Urban Living',
-                                style: TextStyle(color: Colors.white)),
+                            child: Text(
+                              'Urban Living',
+                              style: TextStyle(color: Colors.white),
+                            ),
                           ),
                           Padding(
                               padding: EdgeInsets.symmetric(horizontal: 10),
                               child: Text(
                                   'In today\'s world it is really important to be ...',
                                   style: TextStyle(color: Colors.white70)))
-                        ]))),
+                        ],
+                      ),
+                    ),
+                  ),
 //                 ),
-              ),
-              Positioned(
-                bottom: 10,
-                left: 0.0,
-                right: 0.0,
-                child: Container(
-                  height: 50,
+                ),
+                Positioned(
+                  bottom: 10,
+                  left: 0.0,
+                  right: 0.0,
+                  child: Container(
+                    height: 50,
 //                     width: 250,
-                  padding: EdgeInsets.symmetric(horizontal: 10.0),
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.shade900,
-                            offset: Offset(0.0, 3.0), //(x,y)
-                            blurRadius: 6.0,
+                    padding: EdgeInsets.symmetric(horizontal: 10.0),
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.shade900,
+                              offset: Offset(0.0, 3.0), //(x,y)
+                              blurRadius: 6.0,
+                            ),
+                          ],
+                          borderRadius: BorderRadius.circular(25.0),
+                          border: Border.all(
+                              color: Colors.grey.withOpacity(0.4), width: 1.0),
+                          color: Colors.white),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+//                           SizedBox(width: 20),
+                          SizedBox(
+                            width: 50,
+                            child: TextButton(
+                              style: TextButton.styleFrom(
+                                padding: EdgeInsets.all(0),
+                              ),
+                              onPressed: () {},
+                              child: Icon(Icons.thumb_up, color: Colors.black),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 50,
+                            child: TextButton(
+                              style: TextButton.styleFrom(
+                                padding: EdgeInsets.all(0),
+                              ),
+                              onPressed: () {},
+                              child: Icon(Icons.comment, color: Colors.black),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 50,
+                            child: TextButton(
+                              style: TextButton.styleFrom(
+                                padding: EdgeInsets.all(0),
+                              ),
+                              onPressed: () {},
+                              child: Icon(Icons.share, color: Colors.black),
+                            ),
                           ),
                         ],
-                        borderRadius: BorderRadius.circular(25.0),
-                        border: Border.all(
-                            color: Colors.grey.withOpacity(0.4), width: 1.0),
-                        color: Colors.white),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-//                           SizedBox(width: 20),
-                        SizedBox(
-                          width: 50,
-                          child: TextButton(
-                              style: TextButton.styleFrom(
-                                padding: EdgeInsets.all(0),
-                              ),
-                              onPressed: () {},
-                              child: Icon(Icons.thumb_up, color: Colors.black)),
-                        ),
-                        SizedBox(
-                          width: 50,
-                          child: TextButton(
-                              style: TextButton.styleFrom(
-                                padding: EdgeInsets.all(0),
-                              ),
-                              onPressed: () {},
-                              child: Icon(Icons.comment, color: Colors.black)),
-                        ),
-                        SizedBox(
-                          width: 50,
-                          child: TextButton(
-                              style: TextButton.styleFrom(
-                                padding: EdgeInsets.all(0),
-                              ),
-                              onPressed: () {},
-                              child: Icon(Icons.share, color: Colors.black)),
-                        ),
-                      ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ]),
+              ],
+            ),
         ],
       ),
     );
@@ -427,9 +461,11 @@ class TeamState extends State<Team> with SingleTickerProviderStateMixin {
             padding: EdgeInsets.fromLTRB(5, 20, 5, 10),
             height: 400.0,
             decoration: ShapeDecoration(
-                color: Colors.white,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0))),
+              color: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+            ),
             child: Column(
               children: <Widget>[
                 Row(
@@ -449,57 +485,63 @@ class TeamState extends State<Team> with SingleTickerProviderStateMixin {
                 Container(
                   height: 280,
                   child: ListView.builder(
-                      physics: ClampingScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: 5,
-                      itemBuilder: (BuildContext context, int k) {
-                        return TextButton(
-                          style: TextButton.styleFrom(
-                            padding: EdgeInsets.all(0),
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => NewUI()));
-                          },
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(vertical: 5),
-                            child: Card(
-                              child: ListTile(
-                                  leading: SizedBox(
-                                      width: 50,
-                                      child: CircleAvatar(
-                                        backgroundColor: Colors.black,
-                                        radius: 21,
-                                        child: CircleAvatar(
-                                            radius: 20,
-                                            backgroundImage: NetworkImage(
-                                              '${postImg[k]}',
-                                            )),
-                                      )),
-                                  title: Text(
-                                    '${teamMem[k]}',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
+                    physics: ClampingScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: 5,
+                    itemBuilder: (BuildContext context, int k) {
+                      return TextButton(
+                        style: TextButton.styleFrom(
+                          padding: EdgeInsets.all(0),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => NewUI(),
+                            ),
+                          );
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 5),
+                          child: Card(
+                            child: ListTile(
+                              leading: SizedBox(
+                                width: 50,
+                                child: CircleAvatar(
+                                  backgroundColor: Colors.black,
+                                  radius: 21,
+                                  child: CircleAvatar(
+                                    radius: 20,
+                                    backgroundImage: NetworkImage(
+                                      '${postImg[k]}',
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              title: Text(
+                                '${teamMem[k]}',
+                                style: TextStyle(fontWeight: FontWeight.bold),
 //                                    subtitle: Text('')
-                                  )),
+                              ),
                             ),
                           ),
-                        );
-                      }),
+                        ),
+                      );
+                    },
+                  ),
                 ),
                 Container(
                   padding: EdgeInsets.only(top: 7),
                   child: OutlinedButton(
-                      child: Text(
-                        'Become a member',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, color: Colors.white),
-                      ),
-                      onPressed: () {},
-                      style: OutlinedButton.styleFrom(
-                          backgroundColor: Colors.deepPurple)),
+                    child: Text(
+                      'Become a member',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.white),
+                    ),
+                    onPressed: () {},
+                    style: OutlinedButton.styleFrom(
+                        backgroundColor: Colors.deepPurple),
+                  ),
                 )
               ],
             ),
@@ -523,8 +565,10 @@ class LoginState extends State<Login> with SingleTickerProviderStateMixin {
   void initState() {
     super.initState();
 
-    controller =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 450));
+    controller = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 450),
+    );
     scaleAnimation =
         CurvedAnimation(parent: controller, curve: Curves.elasticInOut);
 
@@ -551,38 +595,41 @@ class LoginState extends State<Login> with SingleTickerProviderStateMixin {
         child: ScaleTransition(
           scale: scaleAnimation,
           child: Container(
-              margin: EdgeInsets.all(20.0),
-              padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 5),
-              height: 400.0,
-              decoration: ShapeDecoration(
-                  color: Colors.white,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0))),
-              child: ListView(
-                children: <Widget>[
+            margin: EdgeInsets.all(20.0),
+            padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 5),
+            height: 400.0,
+            decoration: ShapeDecoration(
+              color: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+            ),
+            child: ListView(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Text(
+                    'Team Name',
+                    style:
+                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                for (int k = 0; k < 4; k++)
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Text(
-                      'Team Name',
-                      style: TextStyle(
-                          fontSize: 20.0, fontWeight: FontWeight.bold),
+                    padding: EdgeInsets.symmetric(vertical: 5),
+                    child: Card(
+                      child: ListTile(
+                          leading: Image.network(''),
+                          title: Text(
+                            '${teamMem[k]}',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+//                                    subtitle: Text('')
+                          )),
                     ),
                   ),
-                  for (int k = 0; k < 4; k++)
-                    Padding(
-                      padding: EdgeInsets.symmetric(vertical: 5),
-                      child: Card(
-                        child: ListTile(
-                            leading: Image.network(''),
-                            title: Text(
-                              '${teamMem[k]}',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-//                                    subtitle: Text('')
-                            )),
-                      ),
-                    ),
-                ],
-              )),
+              ],
+            ),
+          ),
         ),
       ),
     );

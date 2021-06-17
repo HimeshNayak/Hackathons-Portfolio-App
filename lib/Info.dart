@@ -37,14 +37,16 @@ class NewUIInfo extends StatelessWidget {
             elevation: 0,
             actions: <Widget>[
               SizedBox(
-                  width: 60,
-                  height: 30,
-                  child: TextButton(
-                      style: TextButton.styleFrom(
-                        padding: EdgeInsets.all(0),
-                      ),
-                      onPressed: () {},
-                      child: Icon(Icons.search, color: Colors.black)))
+                width: 60,
+                height: 30,
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    padding: EdgeInsets.all(0),
+                  ),
+                  onPressed: () {},
+                  child: Icon(Icons.search, color: Colors.black),
+                ),
+              ),
             ],
           ),
         ),

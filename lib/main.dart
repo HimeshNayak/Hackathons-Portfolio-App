@@ -121,32 +121,36 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _select(Choice choice) {
     // Causes the app to rebuild with the new _selectedChoice.
-    setState(() {
-      _selectedChoice = choice;
-      if (_selectedChoice.icon == Icons.info)
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => WorksDone(),
-          ),
-        );
-      else if (_selectedChoice.icon == Icons.contact_mail) {
-        var url =
-            'mailto:developer.godev@gmail.com?subject=Message%20to%20App%20Developer&body=Hi%20Developer,';
-        launch(url);
-      }
-    });
+    setState(
+      () {
+        _selectedChoice = choice;
+        if (_selectedChoice.icon == Icons.info)
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => WorksDone(),
+            ),
+          );
+        else if (_selectedChoice.icon == Icons.contact_mail) {
+          var url =
+              'mailto:developer.godev@gmail.com?subject=Message%20to%20App%20Developer&body=Hi%20Developer,';
+          launch(url);
+        }
+      },
+    );
   }
 
   void gotoProjects() {
-    setState(() {
-      Navigator.push(
-        context,
-        new MaterialPageRoute(
-          builder: (context) => MyProjectsPage(),
-        ),
-      );
-    });
+    setState(
+      () {
+        Navigator.push(
+          context,
+          new MaterialPageRoute(
+            builder: (context) => MyProjectsPage(),
+          ),
+        );
+      },
+    );
   }
 
 //  final AuthService _auth = AuthService();
@@ -180,18 +184,20 @@ class _MyHomePageState extends State<MyHomePage> {
           ideasController.text,
           projectsController.text);
 
-      FormController formController = FormController((String response) {
-        print('Response: $response');
-        if (response == FormController.STATUS_SUCCESS) {
-          // Feedback is saved succesfully in Google Sheets.
-          _showSnackbar("Response Submitted");
-          print('Response Submitted');
-        } else {
-          // Error Occurred while saving data in Google Sheets.
-          _showSnackbar("Error Occurred!");
-          print('Error Occurred');
-        }
-      });
+      FormController formController = FormController(
+        (String response) {
+          print('Response: $response');
+          if (response == FormController.STATUS_SUCCESS) {
+            // Feedback is saved succesfully in Google Sheets.
+            _showSnackbar("Response Submitted");
+            print('Response Submitted');
+          } else {
+            // Error Occurred while saving data in Google Sheets.
+            _showSnackbar("Error Occurred!");
+            print('Error Occurred');
+          }
+        },
+      );
 
       _showSnackbar("Submitting Response");
 
@@ -311,68 +317,70 @@ class _MyHomePageState extends State<MyHomePage> {
                         autoPlay: true,
                       ),
                       items: imgList
-                          .map((item) => FlatButton(
-                                padding: EdgeInsets.all(0),
-                                child: Container(
-                                  margin: EdgeInsets.symmetric(vertical: 20.0),
-                                  child: ClipRRect(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(5.0)),
-                                      child: Stack(
-                                        children: <Widget>[
-                                          Image.asset(item,
-                                              fit: BoxFit.cover,
-                                              width: double.infinity),
-                                          Positioned(
-                                            bottom: 0.0,
-                                            left: 0.0,
-                                            right: 0.0,
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                gradient: LinearGradient(
-                                                  colors: [
-                                                    Color.fromARGB(
-                                                        200, 0, 0, 0),
-                                                    Color.fromARGB(0, 0, 0, 0)
-                                                  ],
-                                                  begin: Alignment.bottomCenter,
-                                                  end: Alignment.topCenter,
-                                                ),
-                                              ),
-                                              padding: EdgeInsets.symmetric(
-                                                  vertical: 10.0,
-                                                  horizontal: 20.0),
-                                              child: Row(
-                                                children: <Widget>[
-                                                  Text(
-                                                    imgListNames[
-                                                        imgList.indexOf(item)],
-                                                    style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 20.0,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
+                          .map(
+                            (item) => FlatButton(
+                              padding: EdgeInsets.all(0),
+                              child: Container(
+                                margin: EdgeInsets.symmetric(vertical: 20.0),
+                                child: ClipRRect(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(5.0)),
+                                  child: Stack(
+                                    children: <Widget>[
+                                      Image.asset(item,
+                                          fit: BoxFit.cover,
+                                          width: double.infinity),
+                                      Positioned(
+                                        bottom: 0.0,
+                                        left: 0.0,
+                                        right: 0.0,
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            gradient: LinearGradient(
+                                              colors: [
+                                                Color.fromARGB(200, 0, 0, 0),
+                                                Color.fromARGB(0, 0, 0, 0)
+                                              ],
+                                              begin: Alignment.bottomCenter,
+                                              end: Alignment.topCenter,
                                             ),
                                           ),
-                                        ],
-                                      )),
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 10.0, horizontal: 20.0),
+                                          child: Row(
+                                            children: <Widget>[
+                                              Text(
+                                                imgListNames[
+                                                    imgList.indexOf(item)],
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 20.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                                onPressed: () {
-                                  _projectNo = imgList.indexOf(item);
-                                  print(_projectNo);
+                              ),
+                              onPressed: () {
+                                _projectNo = imgList.indexOf(item);
+                                print(_projectNo);
 
-                                  if (imgList.indexOf(item) == 4) {
-                                    setState(() {
+                                if (imgList.indexOf(item) == 4) {
+                                  setState(
+                                    () {
                                       _currentPage = 3;
-                                    });
-                                  } else
-                                    _gotoImageLink(imgList.indexOf(item));
-                                },
-                              ))
+                                    },
+                                  );
+                                } else
+                                  _gotoImageLink(imgList.indexOf(item));
+                              },
+                            ),
+                          )
                           .toList(),
                     ),
                   ),
@@ -398,16 +406,19 @@ class _MyHomePageState extends State<MyHomePage> {
                                   style: TextStyle(color: Colors.black),
                                 ),
                                 subtitle: Text(
-                                    'Take a peek at the Projects and Events posted by the users.',
-                                    style: TextStyle(color: Colors.black54)),
+                                  'Take a peek at the Projects and Events posted by the users.',
+                                  style: TextStyle(color: Colors.black54),
+                                ),
                               ),
                             ],
                           ),
                         ),
                         onPressed: () {
-                          setState(() {
-                            _currentPage = 2;
-                          });
+                          setState(
+                            () {
+                              _currentPage = 2;
+                            },
+                          );
                         },
                       ),
                     ),
@@ -433,20 +444,23 @@ class _MyHomePageState extends State<MyHomePage> {
                                   style: TextStyle(color: Colors.black),
                                 ),
                                 subtitle: Text(
-                                    'Become a GoDev developer and get the opportunity to build projects',
-                                    style: TextStyle(color: Colors.black54)),
+                                  'Become a GoDev developer and get the opportunity to build projects',
+                                  style: TextStyle(color: Colors.black54),
+                                ),
                               ),
                             ],
                           ),
                         ),
                         onPressed: () {
-                          setState(() {
-                            _currentPage = 3;
-                            _gitVisible = true;
-                            _skillsVisible = true;
-                            _ideasVisible = false;
-                            skillsNeededHave = 'Skills';
-                          });
+                          setState(
+                            () {
+                              _currentPage = 3;
+                              _gitVisible = true;
+                              _skillsVisible = true;
+                              _ideasVisible = false;
+                              skillsNeededHave = 'Skills';
+                            },
+                          );
                         },
                       ),
                     ),
@@ -456,37 +470,41 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Padding(
                       padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
                       child: FlatButton(
-                          child: Card(
-                            color: Colors.amber[300],
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                const ListTile(
-                                  leading: Icon(
-                                    Icons.add_comment,
-                                    color: Colors.white,
-                                    size: 35.0,
-                                  ),
-                                  title: Text(
-                                    'Recruit Us / Post an Event',
-                                    style: TextStyle(color: Colors.black),
-                                  ),
-                                  subtitle: Text(
-                                      'Share your idea or post an event and gather a team.',
-                                      style: TextStyle(color: Colors.black54)),
+                        child: Card(
+                          color: Colors.amber[300],
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              const ListTile(
+                                leading: Icon(
+                                  Icons.add_comment,
+                                  color: Colors.white,
+                                  size: 35.0,
                                 ),
-                              ],
-                            ),
+                                title: Text(
+                                  'Recruit Us / Post an Event',
+                                  style: TextStyle(color: Colors.black),
+                                ),
+                                subtitle: Text(
+                                  'Share your idea or post an event and gather a team.',
+                                  style: TextStyle(color: Colors.black54),
+                                ),
+                              ),
+                            ],
                           ),
-                          onPressed: () {
-                            setState(() {
+                        ),
+                        onPressed: () {
+                          setState(
+                            () {
                               _currentPage = 3;
                               _gitVisible = false;
                               _skillsVisible = true;
                               _ideasVisible = true;
                               skillsNeededHave = 'Skills Needed';
-                            });
-                          }),
+                            },
+                          );
+                        },
+                      ),
                     ),
                   ),
                 ],
@@ -566,38 +584,43 @@ class _MyHomePageState extends State<MyHomePage> {
                           colNo < 3 && _memID < Members.members.length;
                           colNo++, _memID++, num = _memID)
                         (new FlatButton(
-                            padding: EdgeInsets.all(0),
-                            child: new Column(
-                              children: <Widget>[
-                                new Container(
-                                  width: 85,
-                                  height: 85,
-                                  decoration: new BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    image: new DecorationImage(
-                                        image: new AssetImage(
-                                          'images/' + Members.imageMember[num],
-                                        ),
-                                        fit: BoxFit.fill),
-                                  ),
+                          padding: EdgeInsets.all(0),
+                          child: new Column(
+                            children: <Widget>[
+                              new Container(
+                                width: 85,
+                                height: 85,
+                                decoration: new BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  image: new DecorationImage(
+                                      image: new AssetImage(
+                                        'images/' + Members.imageMember[num],
+                                      ),
+                                      fit: BoxFit.fill),
                                 ),
-                                new SizedBox(height: 5),
-                                new Text(Members.members[_memID],
-                                    style: TextStyle(color: Colors.amber[300])),
-                                new Text(Members.membersPosition[_memID],
-                                    style: TextStyle(color: Colors.white)),
-                                new SizedBox(height: 15),
-                              ],
-                            ),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                new MaterialPageRoute(
-                                  builder: (context) => DeveloperPage(
-                                      skill: Members.devSkill[num]),
-                                ),
-                              );
-                            })),
+                              ),
+                              new SizedBox(height: 5),
+                              new Text(
+                                Members.members[_memID],
+                                style: TextStyle(color: Colors.amber[300]),
+                              ),
+                              new Text(
+                                Members.membersPosition[_memID],
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              new SizedBox(height: 15),
+                            ],
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              new MaterialPageRoute(
+                                builder: (context) =>
+                                    DeveloperPage(skill: Members.devSkill[num]),
+                              ),
+                            );
+                          },
+                        )),
                     ],
                   )),
               ],
@@ -673,26 +696,110 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Column(
                 children: <Widget>[
                   Form(
-                      key: _formKey,
-                      child: Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 16, vertical: 0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+                    key: _formKey,
+                    child: Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+                            child: TextFormField(
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                              controller: nameController,
+                              validator: (value) {
+                                if (value.isEmpty) {
+                                  return 'Enter Your Name';
+                                }
+                                return null;
+                              },
+                              decoration: InputDecoration(
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15.0),
+                                  borderSide: BorderSide(
+                                    color: Colors.amber[300],
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15.0),
+                                  borderSide: BorderSide(
+                                    color: Colors.blueGrey[500],
+                                    width: 5.0,
+                                  ),
+                                ),
+                                labelText: 'Name',
+                                labelStyle: TextStyle(
+                                  color: myFocusNode.hasFocus
+                                      ? Colors.amber[300]
+                                      : Colors.white,
+                                ),
+                                contentPadding: new EdgeInsets.symmetric(
+                                    vertical: 10.0, horizontal: 10.0),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 5, horizontal: 10),
+                            child: TextFormField(
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                              controller: emailController,
+                              validator: (value) {
+                                if (value.isEmpty) {
+                                  return 'Enter Valid Email';
+                                }
+                                return null;
+                              },
+                              keyboardType: TextInputType.emailAddress,
+                              decoration: InputDecoration(
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15.0),
+                                  borderSide: BorderSide(
+                                    color: Colors.amber[300],
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15.0),
+                                  borderSide: BorderSide(
+                                    color: Colors.blueGrey[500],
+                                    width: 5.0,
+                                  ),
+                                ),
+                                labelText: 'Email',
+                                labelStyle: TextStyle(
+                                  color: myFocusNode.hasFocus
+                                      ? Colors.amber[300]
+                                      : Colors.white,
+                                ),
+                                hintStyle: TextStyle(color: Colors.amber[300]),
+                                hoverColor: Colors.white,
+                                contentPadding: new EdgeInsets.symmetric(
+                                    vertical: 10.0, horizontal: 10.0),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 5, horizontal: 10),
+                            child: Visibility(
+                              visible: _gitVisible,
                               child: TextFormField(
                                 style: TextStyle(
                                   color: Colors.white,
                                 ),
-                                controller: nameController,
+                                controller: linksController,
                                 validator: (value) {
                                   if (value.isEmpty) {
-                                    return 'Enter Your Name';
+                                    return 'Enter Your Github Profile Link';
                                   }
                                   return null;
                                 },
+                                keyboardType: TextInputType.multiline,
                                 decoration: InputDecoration(
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(15.0),
@@ -707,7 +814,50 @@ class _MyHomePageState extends State<MyHomePage> {
                                       width: 5.0,
                                     ),
                                   ),
-                                  labelText: 'Name',
+                                  labelText: 'Github and Linkedin Links',
+                                  labelStyle: TextStyle(
+                                    color: myFocusNode.hasFocus
+                                        ? Colors.amber[300]
+                                        : Colors.white,
+                                  ),
+                                  hintStyle: TextStyle(
+                                    color: Colors.amber[300],
+                                  ),
+                                  contentPadding: new EdgeInsets.symmetric(
+                                      vertical: 10.0, horizontal: 10.0),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 5, horizontal: 10),
+                            child: Visibility(
+                              visible: _skillsVisible,
+                              child: TextFormField(
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                                controller: skillsController,
+                                validator: (value) {
+                                  return null;
+                                },
+                                keyboardType: TextInputType.multiline,
+                                decoration: InputDecoration(
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15.0),
+                                    borderSide: BorderSide(
+                                      color: Colors.amber[300],
+                                    ),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15.0),
+                                    borderSide: BorderSide(
+                                      color: Colors.blueGrey[500],
+                                      width: 5.0,
+                                    ),
+                                  ),
+                                  labelText: skillsNeededHave,
                                   labelStyle: TextStyle(
                                     color: myFocusNode.hasFocus
                                         ? Colors.amber[300]
@@ -718,21 +868,25 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 5, horizontal: 10),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 10),
+                            child: Visibility(
+                              visible: _ideasVisible,
                               child: TextFormField(
+                                focusNode: myFocusNode,
                                 style: TextStyle(
                                   color: Colors.white,
                                 ),
-                                controller: emailController,
+                                controller: ideasController,
                                 validator: (value) {
                                   if (value.isEmpty) {
-                                    return 'Enter Valid Email';
+                                    return 'Share your Idea/Event';
                                   }
                                   return null;
                                 },
-                                keyboardType: TextInputType.emailAddress,
+                                keyboardType: TextInputType.multiline,
                                 decoration: InputDecoration(
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(15.0),
@@ -747,125 +901,34 @@ class _MyHomePageState extends State<MyHomePage> {
                                       width: 5.0,
                                     ),
                                   ),
-                                  labelText: 'Email',
+                                  labelText: 'Share Idea / Event',
                                   labelStyle: TextStyle(
                                     color: myFocusNode.hasFocus
                                         ? Colors.amber[300]
                                         : Colors.white,
                                   ),
-                                  hintStyle:
-                                      TextStyle(color: Colors.amber[300]),
                                   hoverColor: Colors.white,
-                                  contentPadding: new EdgeInsets.symmetric(
-                                      vertical: 10.0, horizontal: 10.0),
+                                  contentPadding: EdgeInsets.symmetric(
+                                      horizontal: 10, vertical: 10),
                                 ),
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 5, horizontal: 10),
-                              child: Visibility(
-                                visible: _gitVisible,
-                                child: TextFormField(
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  ),
-                                  controller: linksController,
-                                  validator: (value) {
-                                    if (value.isEmpty) {
-                                      return 'Enter Your Github Profile Link';
-                                    }
-                                    return null;
-                                  },
-                                  keyboardType: TextInputType.multiline,
-                                  decoration: InputDecoration(
-                                    focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(15.0),
-                                      borderSide: BorderSide(
-                                        color: Colors.amber[300],
-                                      ),
-                                    ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(15.0),
-                                      borderSide: BorderSide(
-                                        color: Colors.blueGrey[500],
-                                        width: 5.0,
-                                      ),
-                                    ),
-                                    labelText: 'Github and Linkedin Links',
-                                    labelStyle: TextStyle(
-                                      color: myFocusNode.hasFocus
-                                          ? Colors.amber[300]
-                                          : Colors.white,
-                                    ),
-                                    hintStyle: TextStyle(
-                                      color: Colors.amber[300],
-                                    ),
-                                    contentPadding: new EdgeInsets.symmetric(
-                                        vertical: 10.0, horizontal: 10.0),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 5, horizontal: 10),
-                              child: Visibility(
-                                visible: _skillsVisible,
-                                child: TextFormField(
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  ),
-                                  controller: skillsController,
-                                  validator: (value) {
-                                    return null;
-                                  },
-                                  keyboardType: TextInputType.multiline,
-                                  decoration: InputDecoration(
-                                    focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(15.0),
-                                      borderSide: BorderSide(
-                                        color: Colors.amber[300],
-                                      ),
-                                    ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(15.0),
-                                      borderSide: BorderSide(
-                                        color: Colors.blueGrey[500],
-                                        width: 5.0,
-                                      ),
-                                    ),
-                                    labelText: skillsNeededHave,
-                                    labelStyle: TextStyle(
-                                      color: myFocusNode.hasFocus
-                                          ? Colors.amber[300]
-                                          : Colors.white,
-                                    ),
-                                    contentPadding: new EdgeInsets.symmetric(
-                                        vertical: 10.0, horizontal: 10.0),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Padding(
+                          ),
+                          Visibility(
+                            visible: _projectsVisible,
+                            child: Padding(
                               padding: const EdgeInsets.symmetric(
                                   vertical: 10, horizontal: 10),
-                              child: Visibility(
-                                visible: _ideasVisible,
-                                child: TextFormField(
-                                  focusNode: myFocusNode,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  ),
-                                  controller: ideasController,
-                                  validator: (value) {
-                                    if (value.isEmpty) {
-                                      return 'Share your Idea/Event';
-                                    }
-                                    return null;
-                                  },
-                                  keyboardType: TextInputType.multiline,
-                                  decoration: InputDecoration(
+                              child: TextFormField(
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                                controller: projectsController,
+                                validator: (value) {
+                                  return null;
+                                },
+                                keyboardType: TextInputType.multiline,
+                                decoration: InputDecoration(
                                     focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(15.0),
                                       borderSide: BorderSide(
@@ -879,59 +942,17 @@ class _MyHomePageState extends State<MyHomePage> {
                                         width: 5.0,
                                       ),
                                     ),
-                                    labelText: 'Share Idea / Event',
-                                    labelStyle: TextStyle(
-                                      color: myFocusNode.hasFocus
-                                          ? Colors.amber[300]
-                                          : Colors.white,
-                                    ),
-                                    hoverColor: Colors.white,
                                     contentPadding: EdgeInsets.symmetric(
                                         horizontal: 10, vertical: 10),
-                                  ),
-                                ),
+                                    hoverColor: Colors.white,
+                                    labelText: ''),
                               ),
                             ),
-                            Visibility(
-                              visible: _projectsVisible,
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 10, horizontal: 10),
-                                child: TextFormField(
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  ),
-                                  controller: projectsController,
-                                  validator: (value) {
-                                    return null;
-                                  },
-                                  keyboardType: TextInputType.multiline,
-                                  decoration: InputDecoration(
-                                      focusedBorder: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(15.0),
-                                        borderSide: BorderSide(
-                                          color: Colors.amber[300],
-                                        ),
-                                      ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(15.0),
-                                        borderSide: BorderSide(
-                                          color: Colors.blueGrey[500],
-                                          width: 5.0,
-                                        ),
-                                      ),
-                                      contentPadding: EdgeInsets.symmetric(
-                                          horizontal: 10, vertical: 10),
-                                      hoverColor: Colors.white,
-                                      labelText: ''),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      )),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                   new FloatingActionButton.extended(
                     heroTag: 'formsubmit',
                     backgroundColor: Colors.blueGrey[500],
@@ -939,18 +960,23 @@ class _MyHomePageState extends State<MyHomePage> {
                       if (nameController.value.toString() != '' &&
                           nameController.value.toString() != '') {
                         FocusScope.of(context).unfocus(); // Close keyboard
-                        setState(() {
-                          //searchData = "";
-                        });
-                        Future.delayed(Duration(microseconds: 500), () {
-                          //call back after 500  microseconds
-                          nameController.clear();
-                          emailController.clear();
-                          linksController.clear();
-                          skillsController.clear();
-                          ideasController.clear();
-                          projectsController.clear(); // clear textfield
-                        });
+                        setState(
+                          () {
+                            //searchData = "";
+                          },
+                        );
+                        Future.delayed(
+                          Duration(microseconds: 500),
+                          () {
+                            //call back after 500  microseconds
+                            nameController.clear();
+                            emailController.clear();
+                            linksController.clear();
+                            skillsController.clear();
+                            ideasController.clear();
+                            projectsController.clear(); // clear textfield
+                          },
+                        );
                         _submitForm();
                       }
                     },
@@ -981,15 +1007,17 @@ class _MyHomePageState extends State<MyHomePage> {
 
         //When an icon is pressed, index of the icon is assigned to currentPage and Page changes
         onTap: (index) {
-          setState(() {
-            _currentPage = index;
-            if (_currentPage == 3) {
-              _gitVisible = true;
-              _skillsVisible = true;
-              _ideasVisible = false;
-              skillsNeededHave = 'Skills';
-            }
-          });
+          setState(
+            () {
+              _currentPage = index;
+              if (_currentPage == 3) {
+                _gitVisible = true;
+                _skillsVisible = true;
+                _ideasVisible = false;
+                skillsNeededHave = 'Skills';
+              }
+            },
+          );
         },
       ),
     );

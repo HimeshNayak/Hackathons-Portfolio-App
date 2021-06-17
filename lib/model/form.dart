@@ -6,7 +6,8 @@ class FeedbackForm {
   String _ideas;
   String _projects;
 
-  FeedbackForm(this._name, this._email, this._links, this._skills, this._ideas, this._projects);
+  FeedbackForm(this._name, this._email, this._links, this._skills, this._ideas,
+      this._projects);
 
   // Method to make GET parameters.
   String toParams() =>
